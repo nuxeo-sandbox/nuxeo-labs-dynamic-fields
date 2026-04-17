@@ -2,7 +2,7 @@
 <component name="nuxeo.labs.dynamic.fields.operations">
 
   <extension point="operations" target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
-    <operation class="nuxeo.labs.dynamic.fields.GetDocTypes"/>
+    <operation class="nuxeo.labs.dynamic.fields.GetDocumentTypes"/>
   </extension>
 
 </component>

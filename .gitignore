@@ -30,3 +30,7 @@ bin/
 *.bak
 *~gen
 .env
+.settings
+.classpath
+.factorypath
+.project

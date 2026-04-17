@@ -1,0 +1,182 @@
+<!--
+`dynamic-fields-view`
+Layout block for viewing dynamic field values on documents with the DynamicFields facet.
+@group Nuxeo UI
+@element dynamic-fields-view
+-->
+<dom-module id="dynamic-fields-view">
+  <template>
+    <style include="nuxeo-styles">
+      .dynamic-field {
+        margin-bottom: 8px;
+      }
+      .field-label {
+        color: var(--secondary-text-color);
+        font-size: 12px;
+        font-weight: 400;
+      }
+      .field-value {
+        font-size: 14px;
+        margin-top: 4px;
+      }
+    </style>
+
+    <!-- Fetch the referenced CustomSchemaDef document -->
+    <nuxeo-resource id="schemaDefLoader"
+                    path="[[_computeSchemaDefPath(document)]]"
+                    schemas="custom-schema-def"
+                    response="{{_schemaDef}}"
+                    auto>
+    </nuxeo-resource>
+
+    <template is="dom-if" if="[[_hasFacet(document)]]">
+      <nuxeo-card heading="Dynamic Fields">
+
+        <template is="dom-if" if="[[!_hasDefinition(_schemaDef)]]">
+          <p>No schema definition linked.</p>
+        </template>
+
+        <template is="dom-if" if="[[_hasDefinition(_schemaDef)]]">
+
+          <div class="dynamic-field">
+            <span class="field-label">Type</span>
+            <div class="field-value">[[_schemaDef.properties.csd:defForTyp]]</div>
+          </div>
+
+          <template is="dom-repeat" items="[[_getFieldDefinitions(_schemaDef)]]" as="fieldDef">
+
+            <!-- String -->
+            <template is="dom-if" if="[[_isType(fieldDef, 'string')]]">
+              <div class="dynamic-field">
+                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <div class="field-value">[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'stringValue')]]</div>
+              </div>
+            </template>
+
+            <!-- Integer -->
+            <template is="dom-if" if="[[_isType(fieldDef, 'integer')]]">
+              <div class="dynamic-field">
+                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <div class="field-value">[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'integerValue')]]</div>
+              </div>
+            </template>
+
+            <!-- Double -->
+            <template is="dom-if" if="[[_isType(fieldDef, 'double')]]">
+              <div class="dynamic-field">
+                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <div class="field-value">[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'doubleValue')]]</div>
+              </div>
+            </template>
+
+            <!-- Boolean -->
+            <template is="dom-if" if="[[_isType(fieldDef, 'boolean')]]">
+              <div class="dynamic-field">
+                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <div class="field-value">[[_formatBoolean(_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'booleanValue'))]]</div>
+              </div>
+            </template>
+
+            <!-- Date -->
+            <template is="dom-if" if="[[_isType(fieldDef, 'date')]]">
+              <div class="dynamic-field">
+                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <div class="field-value">
+                  <nuxeo-date datetime="[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'dateValue')]]"></nuxeo-date>
+                </div>
+              </div>
+            </template>
+
+            <!-- Blob -->
+            <template is="dom-if" if="[[_isType(fieldDef, 'blob')]]">
+              <div class="dynamic-field">
+                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <div class="field-value">
+                  <template is="dom-if" if="[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'blobValue')]]">
+                    <nuxeo-document-blob
+                      role="widget"
+                      document="[[document]]"
+                      xpath="dynf:values/[[_findValueIndex(fieldDef.fieldName)]]/blobValue"
+                    ></nuxeo-document-blob>
+                  </template>
+                  <template is="dom-if" if="[[!_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'blobValue')]]">
+                    —
+                  </template>
+                </div>
+              </div>
+            </template>
+
+          </template>
+        </template>
+
+      </nuxeo-card>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'dynamic-fields-view',
+      behaviors: [Nuxeo.LayoutBehavior],
+      properties: {
+        document: {
+          type: Object,
+        },
+        _schemaDef: {
+          type: Object,
+        },
+      },
+
+      _hasFacet: function(document) {
+        return document && document.facets && document.facets.indexOf('DynamicFields') !== -1;
+      },
+
+      _computeSchemaDefPath: function(document) {
+        if (!document || !document.properties || !document.properties['dynf:schemaDef']) {
+          return null;
+        }
+        return '/id/' + document.properties['dynf:schemaDef'];
+      },
+
+      _hasDefinition: function(schemaDef) {
+        return schemaDef && schemaDef.properties &&
+               schemaDef.properties['csd:definition'] &&
+               schemaDef.properties['csd:definition'].length > 0;
+      },
+
+      _getFieldDefinitions: function(schemaDef) {
+        if (!schemaDef || !schemaDef.properties || !schemaDef.properties['csd:definition']) {
+          return [];
+        }
+        return schemaDef.properties['csd:definition'];
+      },
+
+      _isType: function(fieldDef, type) {
+        return fieldDef && fieldDef.fieldTyp === type;
+      },
+
+      _getFieldValue: function(fieldName, values, valueKey) {
+        if (!values) return null;
+        for (var i = 0; i < values.length; i++) {
+          if (values[i].fieldName === fieldName) {
+            return values[i][valueKey];
+          }
+        }
+        return null;
+      },
+
+      _findValueIndex: function(fieldName) {
+        var values = this.document.properties['dynf:values'];
+        if (!values) return -1;
+        for (var i = 0; i < values.length; i++) {
+          if (values[i].fieldName === fieldName) return i;
+        }
+        return -1;
+      },
+
+      _formatBoolean: function(value) {
+        return value ? 'Yes' : 'No';
+      },
+    });
+  </script>
+</dom-module>
