@@ -49,13 +49,14 @@
       <nuxeo-data-table-form>
         <template>
           <nuxeo-input value="{{item.fieldName}}" label="Field Name" type="text" name="fieldName" required></nuxeo-input>
-          <nuxeo-select
+          <nuxeo-directory-suggestion
             value="{{item.fieldTyp}}"
             label="Field Type"
             name="fieldTyp"
-            options='["string","integer","double","boolean","date","blob"]'
+            directory-name="dynf_field_types"
+            min-chars="0"
             required
-          ></nuxeo-select>
+          ></nuxeo-directory-suggestion>
         </template>
       </nuxeo-data-table-form>
     </nuxeo-data-table>

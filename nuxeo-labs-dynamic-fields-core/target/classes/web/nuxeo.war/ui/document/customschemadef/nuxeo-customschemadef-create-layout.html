@@ -9,6 +9,15 @@
 
     <nuxeo-input
       role="widget"
+      label="CUSTOMER ID - REMPLI ICI POUR TESTS"
+      name="CustomerId"
+      value="{{document.properties.csd:customerId}}"
+      autofocus
+      required
+    ></nuxeo-input>
+
+    <nuxeo-input
+      role="widget"
       label="[[i18n('title')]]"
       name="title"
       value="{{document.properties.dc:title}}"
@@ -50,13 +59,14 @@
       <nuxeo-data-table-form>
         <template>
           <nuxeo-input value="{{item.fieldName}}" label="Field Name" type="text" name="fieldName" required></nuxeo-input>
-          <nuxeo-select
+          <nuxeo-directory-suggestion
             value="{{item.fieldTyp}}"
             label="Field Type"
             name="fieldTyp"
-            options='["string","integer","double","boolean","date","blob"]'
+            directory-name="dynf_field_types"
+            min-chars="0"
             required
-          ></nuxeo-select>
+          ></nuxeo-directory-suggestion>
         </template>
       </nuxeo-data-table-form>
     </nuxeo-data-table>
@@ -73,7 +83,7 @@
          */
         document: {
           type: Object,
-        },
+        }
       },
     });
   </script>
