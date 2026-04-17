@@ -1,0 +1,80 @@
+<!--
+`nuxeo-customschemadef-create-layout`
+@group Nuxeo UI
+@element nuxeo-customschemadef-create-layout
+-->
+<dom-module id="nuxeo-customschemadef-create-layout">
+  <template>
+    <style include="nuxeo-styles"></style>
+
+    <nuxeo-input
+      role="widget"
+      label="[[i18n('title')]]"
+      name="title"
+      value="{{document.properties.dc:title}}"
+      autofocus
+      required
+    ></nuxeo-input>
+
+    <nuxeo-textarea
+      role="widget"
+      label="[[i18n('label.description')]]"
+      name="description"
+      value="{{document.properties.dc:description}}"
+    ></nuxeo-textarea>
+
+    <nuxeo-input
+      role="widget"
+      label="Type Name"
+      name="defForTyp"
+      value="{{document.properties.csd:defForTyp}}"
+      required
+    ></nuxeo-input>
+
+    <nuxeo-data-table
+      role="widget"
+      label="Field Definitions"
+      items="{{document.properties.csd:definition}}"
+      name="definition"
+      editable
+      orderable
+    >
+      <nuxeo-data-table-column name="Field Name">
+        <template>[[item.fieldName]]</template>
+      </nuxeo-data-table-column>
+
+      <nuxeo-data-table-column name="Field Type">
+        <template>[[item.fieldTyp]]</template>
+      </nuxeo-data-table-column>
+
+      <nuxeo-data-table-form>
+        <template>
+          <nuxeo-input value="{{item.fieldName}}" label="Field Name" type="text" name="fieldName" required></nuxeo-input>
+          <nuxeo-select
+            value="{{item.fieldTyp}}"
+            label="Field Type"
+            name="fieldTyp"
+            options='["string","integer","double","boolean","date","blob"]'
+            required
+          ></nuxeo-select>
+        </template>
+      </nuxeo-data-table-form>
+    </nuxeo-data-table>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-customschemadef-create-layout',
+      behaviors: [Nuxeo.LayoutBehavior],
+      properties: {
+        /**
+         * @doctype CustomSchemaDef
+         */
+        document: {
+          type: Object,
+        },
+      },
+    });
+  </script>
+</dom-module>

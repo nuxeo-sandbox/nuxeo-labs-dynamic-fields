@@ -1,0 +1,342 @@
+15:31:25,351 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.osgi.app
+15:31:25,373 INFO  [OSGIRuntimeTestActivator] Starting Runtime Activator
+15:31:25,393 INFO  [JavaUtilLoggingHelper] Redirecting java.util.logging to Apache Log4j, threshold is INFO
+15:31:25,393 INFO  [AbstractRuntimeService] Starting Nuxeo Runtime service: OSGi NXRuntime; version: 1.4.0
+15:31:25,413 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.stream
+15:31:25,422 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.event
+15:31:25,428 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.scheduler.SchedulerService. Waiting for: [service:org.nuxeo.runtime.cluster.ClusterService]
+15:31:25,439 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.automation.features
+15:31:25,441 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.automation.features.operations. Waiting for: [service:org.nuxeo.ecm.core.automation.coreContrib]
+15:31:25,444 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.automation.features.bulk. Waiting for: [service:org.nuxeo.ecm.core.bulk.config]
+15:31:25,446 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.schema
+15:31:25,453 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.jtajca
+15:31:25,454 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.directory.types.contrib
+15:31:25,455 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.directory.sql
+15:31:25,458 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.directory.sql.SQLDirectoryFactory. Waiting for: [service:org.nuxeo.ecm.directory.DirectoryServiceImpl]
+15:31:25,458 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.storage
+15:31:25,460 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.storage.bulk. Waiting for: [service:org.nuxeo.ecm.core.bulk.config]
+15:31:25,460 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.automation.core
+15:31:25,463 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.operation.OperationServiceComponent. Waiting for: [service:org.nuxeo.runtime.management.ServerLocator]
+15:31:25,467 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.commandline.executor
+15:31:25,470 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.webengine.core
+15:31:25,472 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.webengine.WebEngineComponent. Waiting for: [service:org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService, service:org.nuxeo.ecm.platform.rendering.fm.FreemarkerComponent]
+15:31:25,472 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.platform.ui.web.auth.WebEngineConfig. Waiting for: [service:org.nuxeo.ecm.platform.ui.web.auth.defaultConfig, service:org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService]
+15:31:25,473 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core
+15:31:25,474 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.repository.RepositoryServiceComponent. Waiting for: [service:org.nuxeo.runtime.cluster.ClusterService, service:org.nuxeo.ecm.core.api.repository.RepositoryManager]
+15:31:25,482 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.versioning.default-policies. Waiting for: [service:org.nuxeo.ecm.platform.el.service]
+15:31:25,483 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.orphanVersionsCleanup. Waiting for: [service:org.nuxeo.ecm.core.bulk]
+15:31:25,487 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.deletion.config. Waiting for: [service:org.nuxeo.ecm.core.bulk]
+15:31:25,490 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.stream.blobs. Waiting for: [service:org.nuxeo.ecm.core.bulk]
+15:31:25,491 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.scroll.contrib. Waiting for: [service:org.nuxeo.ecm.core.scroll.service]
+15:31:25,491 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.query
+15:31:25,492 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.convert.api
+15:31:25,492 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.directory.test
+15:31:25,492 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.cluster
+15:31:25,494 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.runtime.cluster.ClusterService. Waiting for: [service:org.nuxeo.runtime.kv.KeyValueService]
+15:31:25,494 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.datasource
+15:31:25,495 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.migration
+15:31:25,496 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.runtime.migration.MigrationService. Waiting for: [service:org.nuxeo.runtime.kv.KeyValueService]
+15:31:25,496 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.kv
+15:31:25,497 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.convert.plugins
+15:31:25,499 INFO  [BundleRegistry] Registering resolved bundle: nuxeo.labs.dynamic.fields.nuxeo-labs-dynamic-fields-core
+15:31:25,500 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.directory
+15:31:25,501 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.directory.DirectoryServiceImpl. Waiting for: [service:org.nuxeo.ecm.core.cache.CacheService]
+15:31:25,502 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.directory.GenericDirectory. Waiting for: [service:org.nuxeo.ecm.directory.DirectoryServiceImpl]
+15:31:25,502 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.directory.core.CoreDirectoryFactory. Waiting for: [service:org.nuxeo.ecm.directory.DirectoryServiceImpl]
+15:31:25,504 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.actions
+15:31:25,507 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.bulk.test
+15:31:25,508 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.bulk
+15:31:25,511 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.rendering
+15:31:25,513 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.metrics
+15:31:25,514 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.automation.scripting
+15:31:25,516 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.automation.scripting.internals.AutomationScriptingComponent. Waiting for: [service:org.nuxeo.ecm.core.operation.OperationServiceComponent]
+15:31:25,516 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.pubsub
+15:31:25,517 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.mimetype
+15:31:25,520 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.test
+15:31:25,521 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.storage.sql
+15:31:25,524 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.repository.RepositoryService. Waiting for: [service:org.nuxeo.ecm.core.storage.sql.RepositoryService]
+15:31:25,524 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.storage.sql.RepositoryService. Waiting for: [service:org.nuxeo.ecm.core.repository.RepositoryServiceComponent, service:org.nuxeo.ecm.core.api.repository.RepositoryManager]
+15:31:25,524 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.directory.api
+15:31:25,525 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.api
+15:31:25,531 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.convert
+15:31:25,532 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.el
+15:31:25,533 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.directory.sql.tests
+15:31:25,534 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.directory.test.sql. Waiting for: [service:org.nuxeo.runtime.datasource.test]
+15:31:25,534 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.query.api
+15:31:25,535 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.reload
+15:31:25,535 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.management
+15:31:25,536 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.runtime.management.ResourcePublisher. Waiting for: [service:org.nuxeo.runtime.management.ServerLocator]
+15:31:25,538 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.runtime.stream.test
+15:31:25,538 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.api
+15:31:25,538 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.dublincore
+15:31:25,539 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.automation.server
+15:31:25,539 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.automation.server.AutomationServer. Waiting for: [service:org.nuxeo.ecm.automation.io.services.IOComponent]
+15:31:25,540 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.automation.server.auth.config. Waiting for: [service:org.nuxeo.ecm.platform.ui.web.auth.defaultConfig]
+15:31:25,540 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.core.io
+15:31:25,543 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.io.download.DownloadService. Waiting for: [service:org.nuxeo.ecm.core.transientstore.TransientStorageComponent]
+15:31:25,544 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.web.common
+15:31:25,557 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.content.template
+15:31:25,563 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.automation.io
+15:31:25,565 INFO  [BundleRegistry] Registering resolved bundle: org.nuxeo.ecm.platform.usermanager
+15:31:25,567 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.platform.usermanager.UserManagerImpl. Waiting for: [service:org.nuxeo.ecm.core.cache.CacheService]
+15:31:25,570 INFO  [ComponentManagerImpl] Registration delayed for component: service:org.nuxeo.ecm.core.test.repository. Waiting for: [service:org.nuxeo.runtime.datasource.test]
+15:31:25,577 INFO  [RuntimeStreamFeature] Deploying Nuxeo Stream using Mem
+15:31:25,577 INFO  [WorkManagerFeature] Deploying WorkManager using default implementation
+15:31:25,714 INFO  [VCSRepositoryFeature] Deploying a VCS repository using H2
+15:31:25,715 INFO  [DirectoryFeature] Deploying Directory using Sql
+15:31:25,721 INFO  [ComponentManagerImpl] Starting Nuxeo Components
+15:31:25,721 INFO  [ComponentManagerImpl] Instantiate components
+15:31:25,858 INFO  [ComponentManagerImpl] Activate components
+15:31:25,871 INFO  [SchemaManagerImpl] Registered schema: base
+15:31:25,871 INFO  [SchemaManagerImpl] Registered schema: core-types
+15:31:25,880 INFO  [SchemaManagerImpl] Registered schema: user
+15:31:25,881 INFO  [SchemaManagerImpl] Registered schema: group
+15:31:25,881 INFO  [SchemaManagerImpl] Registered schema: vocabulary
+15:31:25,881 INFO  [SchemaManagerImpl] Registered schema: xvocabulary
+15:31:25,881 INFO  [SchemaManagerImpl] Registered schema: l10nvocabulary
+15:31:25,881 INFO  [SchemaManagerImpl] Registered schema: l10nxvocabulary
+15:31:25,881 INFO  [SchemaManagerImpl] Registered schema: documentsLists
+15:31:25,887 INFO  [SchemaManagerImpl] Registered schema: relation
+15:31:25,887 INFO  [SchemaManagerImpl] Registered schema: common
+15:31:25,887 INFO  [SchemaManagerImpl] Registered schema: dublincore
+15:31:25,887 INFO  [SchemaManagerImpl] Registered schema: uid
+15:31:25,887 INFO  [SchemaManagerImpl] Registered schema: file
+15:31:25,887 INFO  [SchemaManagerImpl] Registered schema: files
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: note
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: domain
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: relatedtext
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: publishing
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: webcontainer
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: collection
+15:31:25,888 INFO  [SchemaManagerImpl] Registered schema: collectionMember
+15:31:25,888 INFO  [SchemaManagerImpl] Registered global prefetch: common, dublincore
+15:31:25,888 INFO  [SchemaManagerImpl] Registered clearComplexPropertyBeforeSet: true
+15:31:25,889 INFO  [SchemaManagerImpl] Registered allowVersionWriteForDublinCore: false
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: Folderish
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: Orderable
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: Versionable
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: Downloadable
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: Publishable
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: PublishSpace
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: MasterPublishSpace
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: Commentable
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: WebView
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: SuperSpace
+15:31:25,890 INFO  [SchemaManagerImpl] Registered facet: HiddenInNavigation
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: SystemDocument
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: NotFulltextIndexable
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: BigFolder
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: HiddenInCreation
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: HasRelatedText
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: Collection
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: NotCollectionMember
+15:31:25,891 INFO  [SchemaManagerImpl] Registered facet: CollectionMember
+15:31:25,891 INFO  [SchemaManagerImpl] Registered proxies descriptor for schemas: [collectionMember]
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: Folder
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: OrderedFolder
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: HiddenFolder
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: Root
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: Relation
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: Domain
+15:31:25,891 INFO  [SchemaManagerImpl] Registered document type: WorkspaceRoot
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: Workspace
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: TemplateRoot
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: SectionRoot
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: Section
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: File
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: Note
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: Collection
+15:31:25,892 INFO  [SchemaManagerImpl] Registered document type: Collections
+15:31:25,903 INFO  [SchemaManagerImpl] Registered schema: custom-schema-def
+15:31:25,903 INFO  [SchemaManagerImpl] Registered schema: dynamic-fields
+15:31:25,903 INFO  [SchemaManagerImpl] Registered document type: CustomSchemaDef
+15:31:25,903 INFO  [SchemaManagerImpl] Registered facet: DynamicFields
+15:31:25,904 INFO  [SchemaManagerImpl] Registered schema: directory_configuration
+15:31:25,904 INFO  [SchemaManagerImpl] Registered facet: DirectoryLocalConfiguration
+15:31:25,914 INFO  [QueryMakerServiceImpl] Registering QueryMaker 'NXQL': org.nuxeo.ecm.core.storage.sql.jdbc.NXQLQueryMaker
+15:31:25,915 INFO  [SchemaManagerImpl] Registered schema: system
+15:31:25,915 INFO  [DocumentAdapterService] Registered document adapter factory: null: interface org.nuxeo.ecm.core.api.facet.VersioningDocument
+15:31:25,916 INFO  [DocumentAdapterService] Registered document adapter factory: null: interface org.nuxeo.ecm.directory.localconfiguration.DirectoryConfiguration
+15:31:25,916 INFO  [DocumentAdapterService] Registered document adapter factory: null: interface org.nuxeo.ecm.core.api.blobholder.BlobHolder
+15:31:25,917 INFO  [DocumentAdapterService] Registered document adapter factory: null: class org.nuxeo.ecm.core.api.thumbnail.ThumbnailAdapter
+15:31:25,999 INFO  [WebEngineComponent] Using web root: /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/web
+15:31:26,053 INFO  [UserService] UserService activated
+15:31:26,053 INFO  [DocumentAdapterService] Registered document adapter factory: null: interface org.nuxeo.ecm.platform.usermanager.UserAdapter
+15:31:26,060 INFO  [SchemaManagerImpl] Registered schema: documentfields
+15:31:26,060 INFO  [SchemaManagerImpl] Registered document type: FileWithDocumentFields
+15:31:26,062 INFO  [DirectoryRegistry] Registered directory: userDirectory
+15:31:26,062 INFO  [DirectoryRegistry] Registered directory: groupDirectory
+15:31:26,063 INFO  [SchemaManagerImpl] Registered schema: testCommonScalar
+15:31:26,063 INFO  [SchemaManagerImpl] Registered schema: testCommonComplex
+15:31:26,063 INFO  [SchemaManagerImpl] Registered schema: testCommonAdditionalComplex
+15:31:26,063 INFO  [SchemaManagerImpl] Registered document type: CommonDocument
+15:31:26,063 INFO  [SchemaManagerImpl] Registered facet: CommonFacet
+15:31:26,063 INFO  [SchemaManagerImpl] Registered facet: CommonAdditionalComplex
+15:31:26,063 INFO  [DataSourceComponent] Registering datasource: jdbc/nuxeojunittests
+15:31:26,087 INFO  [DataSourceComponent] Registering DataSourceLink: java:comp/env/jdbc/nxsqldirectory
+15:31:26,089 INFO  [DirectoryRegistry] Registered directory template: template-directory
+15:31:26,089 INFO  [DirectoryRegistry] Registered directory template: template-user
+15:31:26,089 INFO  [DirectoryRegistry] Registered directory template: template-group
+15:31:26,089 INFO  [DataSourceComponent] Registering DataSourceLink: java:comp/env/jdbc/repository_test
+15:31:26,092 INFO  [RepositoryManagerImpl] Registering repository: test
+15:31:26,093 INFO  [ComponentManagerImpl] Start components (isResume=false)
+15:31:26,094 INFO  [ClusterServiceImpl] Using random cluster node id: 4718619069977752518
+15:31:26,094 INFO  [DataSourceComponent] Registering datasource: jdbc/nuxeojunittests
+15:31:26,094 INFO  [DataSourceComponent] Registering DataSourceLink: java:comp/env/jdbc/repository_test
+15:31:26,094 INFO  [DataSourceComponent] Registering DataSourceLink: java:comp/env/jdbc/nxsqldirectory
+15:31:26,127 INFO  [StreamServiceImpl] Create if not exists stream: bulk/command with manager: null
+15:31:26,127 INFO  [StreamServiceImpl] Create if not exists stream: bulk/status with manager: null
+15:31:26,127 INFO  [StreamServiceImpl] Create if not exists stream: bulk/done with manager: null
+15:31:26,127 INFO  [StreamServiceImpl] Processor metrics disabled
+15:31:26,127 INFO  [StreamServiceImpl] Init Stream processor: retentionExpired
+15:31:26,160 INFO  [StreamServiceImpl] Init Stream processor: migration
+15:31:26,161 INFO  [StreamServiceImpl] Init Stream processor: blobGC
+15:31:26,162 INFO  [StreamServiceImpl] Init Stream processor: documentGC
+15:31:26,163 INFO  [StreamServiceImpl] Init Stream processor: deletion
+15:31:26,164 INFO  [StreamServiceImpl] Init Stream processor: garbageCollectOrphanBlobs
+15:31:26,165 INFO  [StreamServiceImpl] Init Stream processor: garbageCollectOrphanVersions
+15:31:26,165 INFO  [StreamServiceImpl] Init Stream processor: bulkServiceProcessor
+15:31:26,168 INFO  [StreamServiceImpl] Processor streamIntrospection disabled
+15:31:26,168 INFO  [StreamServiceImpl] Init Stream processor: setProperties
+15:31:26,168 INFO  [StreamServiceImpl] Init Stream processor: setSystemProperties
+15:31:26,169 INFO  [StreamServiceImpl] Init Stream processor: removeProxy
+15:31:26,170 INFO  [StreamServiceImpl] Init Stream processor: trash
+15:31:26,170 INFO  [StreamServiceImpl] Processor idle disabled
+15:31:26,171 INFO  [StreamServiceImpl] Init Stream processor: automation
+15:31:26,172 INFO  [StreamServiceImpl] Init Stream processor: automationUi
+15:31:26,172 INFO  [StreamServiceImpl] Init Stream processor: extractBinaryFulltext
+15:31:26,173 INFO  [StreamServiceImpl] Processor fixBinaryFulltextStorage disabled
+15:31:26,173 INFO  [WorkManagerImpl] Initializing dead letter queue to store Work in failure
+15:31:26,175 INFO  [WorkManagerImpl] Initialized work queue default, WorkQueueDescriptor(id=default categories=[] queuing=true processing=true maxThreads=4 capacity=-1)
+15:31:26,175 INFO  [WorkManagerImpl] Initialized work queue blobs, WorkQueueDescriptor(id=blobs categories=[blobListZip] queuing=true processing=true maxThreads=2 capacity=-1)
+15:31:26,176 INFO  [WorkManagerImpl] Initialized work queue updateACEStatus, WorkQueueDescriptor(id=updateACEStatus categories=[updateACEStatus] queuing=true processing=true maxThreads=1 capacity=-1)
+15:31:26,176 INFO  [WorkManagerImpl] Initialized work queue computeDigest, WorkQueueDescriptor(id=computeDigest categories=[computeDigest] queuing=true processing=true maxThreads=2 capacity=-1)
+15:31:26,176 INFO  [WorkManagerImpl] Initialized work queue transientStorageGC, WorkQueueDescriptor(id=transientStorageGC categories=[transientStorageGC] queuing=true processing=true maxThreads=1 capacity=-1)
+15:31:26,177 INFO  [MigrationServiceImpl] Not registering a migration invalidator because clustering is not enabled
+15:31:26,209 INFO  [SchemaManagerImpl] Registered schema: base from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/base.xsd
+15:31:26,214 INFO  [SchemaManagerImpl] Registered schema: core-types from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/core-types.xsd
+15:31:26,220 INFO  [SchemaManagerImpl] Registered schema: user from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/user.xsd
+15:31:26,223 INFO  [SchemaManagerImpl] Registered schema: group from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/group.xsd
+15:31:26,225 INFO  [SchemaManagerImpl] Registered schema: vocabulary from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/vocabulary.xsd
+15:31:26,226 INFO  [SchemaManagerImpl] Registered schema: xvocabulary from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/xvocabulary.xsd
+15:31:26,227 INFO  [SchemaManagerImpl] Registered schema: l10nvocabulary from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/l10nvocabulary.xsd
+15:31:26,230 INFO  [SchemaManagerImpl] Registered schema: l10nxvocabulary from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/l10nxvocabulary.xsd
+15:31:26,232 INFO  [SchemaManagerImpl] Registered schema: documentsLists from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/documentsLists.xsd
+15:31:26,234 INFO  [SchemaManagerImpl] Registered schema: relation from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/relation.xsd
+15:31:26,235 INFO  [SchemaManagerImpl] Registered schema: common from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/common.xsd
+15:31:26,240 INFO  [ObjectResolverServiceImpl] Unable to configure: org.nuxeo.ecm.directory.DirectoryEntryResolver with parameters: {directory=l10nsubjects}
+15:31:26,241 INFO  [XSDLoader] type of null|null targets ObjectResolver namespace but has no matching resolver registered (please contribute to component : org.nuxeo.ecm.core.schema.ObjectResolverService)
+15:31:26,241 INFO  [ObjectResolverServiceImpl] Unable to configure: org.nuxeo.ecm.directory.DirectoryEntryResolver with parameters: {directory=l10ncoverage}
+15:31:26,241 INFO  [XSDLoader] type of coverage|null targets ObjectResolver namespace but has no matching resolver registered (please contribute to component : org.nuxeo.ecm.core.schema.ObjectResolverService)
+15:31:26,241 INFO  [ObjectResolverServiceImpl] Unable to configure: org.nuxeo.ecm.directory.DirectoryEntryResolver with parameters: {directory=nature}
+15:31:26,241 INFO  [XSDLoader] type of nature|null targets ObjectResolver namespace but has no matching resolver registered (please contribute to component : org.nuxeo.ecm.core.schema.ObjectResolverService)
+15:31:26,241 INFO  [SchemaManagerImpl] Registered schema: dublincore from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/dublincore.xsd
+15:31:26,243 INFO  [SchemaManagerImpl] Registered schema: uid from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/uid.xsd
+15:31:26,245 INFO  [SchemaManagerImpl] Registered schema: file from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/file.xsd
+15:31:26,247 INFO  [SchemaManagerImpl] Registered schema: files from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/files.xsd
+15:31:26,248 INFO  [SchemaManagerImpl] Registered schema: note from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/note.xsd
+15:31:26,250 INFO  [SchemaManagerImpl] Registered schema: domain from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/domain.xsd
+15:31:26,251 INFO  [SchemaManagerImpl] Registered schema: relatedtext from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/relatedtext.xsd
+15:31:26,252 INFO  [SchemaManagerImpl] Registered schema: publishing from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/publishing.xsd
+15:31:26,255 INFO  [SchemaManagerImpl] Registered schema: webcontainer from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/webcontainer.xsd
+15:31:26,256 INFO  [SchemaManagerImpl] Registered schema: collection from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/collection.xsd
+15:31:26,257 INFO  [SchemaManagerImpl] Registered schema: collectionMember from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/collectionMember.xsd
+15:31:26,265 INFO  [SchemaManagerImpl] Registered schema: custom-schema-def from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/custom-schema-def.xsd
+15:31:26,266 INFO  [SchemaManagerImpl] Registered schema: dynamic-fields from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/dynamic-fields.xsd
+15:31:26,267 INFO  [SchemaManagerImpl] Registered schema: directory_configuration from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/directory_configuration.xsd
+15:31:26,268 INFO  [SchemaManagerImpl] Registered schema: system from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/system.xsd
+15:31:26,270 INFO  [SchemaManagerImpl] Registered schema: documentfields from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/documentfields.xsd
+15:31:26,272 INFO  [SchemaManagerImpl] Registered schema: testCommonScalar from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/testCommonScalar.xsd
+15:31:26,275 INFO  [SchemaManagerImpl] Registered schema: testCommonComplex from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/testCommonComplex.xsd
+15:31:26,277 INFO  [SchemaManagerImpl] Registered schema: testCommonAdditionalComplex from /Users/thibaud.arguillere/GitHub/nuxeo-sandbox/nuxeo-labs-dynamic-fields/nuxeo-labs-dynamic-fields-core/target/nxruntime-main-16895198323803897961.tmp/tmp/schemas/testCommonAdditionalComplex.xsd
+15:31:26,282 INFO  [CacheServiceImpl] Not registering a cache invalidator because clustering is not enabled
+15:31:26,342 INFO  [AbstractDirectory] Load directory: userDirectory with dataLoadingPolicy: legacy and file: users.csv
+15:31:26,363 INFO  [AbstractDirectory] Load directory: groupDirectory with dataLoadingPolicy: legacy and file: groups.csv
+15:31:26,367 INFO  [RepositoryService] Session pool reconnect on borrow: true
+15:31:26,436 INFO  [RepositoryImpl] Repository: test using lock manager: VCSLockManager(repository_test)
+15:31:26,437 INFO  [RepositoryImpl] VCS Mapper cache using: org.nuxeo.ecm.core.storage.sql.SoftRefCachingMapper
+15:31:26,540 INFO  [AutomationComponent] You can activate automation trace mode to get more information on automation executions
+15:31:26,549 INFO  [StdSchedulerFactory] Using default implementation for ThreadExecutor
+15:31:26,552 INFO  [SchedulerSignalerImpl] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+15:31:26,552 INFO  [QuartzScheduler] Quartz Scheduler v2.5.2 created.
+15:31:26,552 INFO  [RAMJobStore] RAMJobStore initialized.
+15:31:26,553 INFO  [QuartzScheduler] Scheduler meta-data: Quartz Scheduler (v2.5.2) 'Quartz' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 1 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+15:31:26,553 INFO  [StdSchedulerFactory] Quartz scheduler 'Quartz' initialized from an externally provided properties instance.
+15:31:26,553 INFO  [StdSchedulerFactory] Quartz scheduler version: 2.5.2
+15:31:26,553 INFO  [QuartzScheduler] Scheduler Quartz_$_NON_CLUSTERED started.
+15:31:26,553 INFO  [SchedulerServiceImpl] Registering: Schedule blobManagerDeleteMarkedBlobsSchedule (cron=0 0/15 * * * ?)
+15:31:26,557 INFO  [SchedulerServiceImpl] Registering: Schedule aceScheduler (cron=0 0/5 * * * ?)
+15:31:26,557 INFO  [SchedulerServiceImpl] Registering: Schedule softDeleteCleanup (cron=0 0/15 * * * ?)
+15:31:26,557 INFO  [SchedulerServiceImpl] Registering: Schedule transientStoreGC (cron=0 0/15 * * * ?)
+15:31:26,557 INFO  [SchedulerServiceImpl] scheduler started
+15:31:26,834 WARN  [CommandLineExecutorComponent] Shell command: timeout is not available, the following Nuxeo commands won't be available: [timeout], (command timeout not found in system path - null)
+15:31:26,835 WARN  [CommandLineExecutorComponent] There is no timeout command available, command executions won't be time-boxed.
+15:31:26,839 ERROR [AbstractRuntimeService$1] NUXEO INSTANCE REGISTRATION FILE IS MISSING
+
+***** This Nuxeo instance is not registered *****
+This Nuxeo instance can only be used for development and will be stopped if used in production
+
+15:31:26,848 INFO  [ComputationPool] bulk/scroller: Starting pool
+15:31:26,850 INFO  [ComputationPool] bulk/status: Starting pool
+15:31:26,851 INFO  [ComputationPool] retention/retentionExpired: Starting pool
+15:31:26,851 INFO  [ComputationPool] blob/gc: Starting pool
+15:31:26,851 INFO  [ComputationPool] document/gc: Starting pool
+15:31:26,851 INFO  [ComputationPool] bulk/deletion: Starting pool
+15:31:26,852 INFO  [ComputationPool] bulk/garbageCollectOrphanBlobs: Starting pool
+15:31:26,853 INFO  [ComputationPool] bulk/garbageCollectOrphanVersions: Starting pool
+15:31:26,853 INFO  [ComputationPool] bulk/setProperties: Starting pool
+15:31:26,853 INFO  [ComputationPool] bulk/setSystemProperties: Starting pool
+15:31:26,854 INFO  [ComputationPool] bulk/removeProxy: Starting pool
+15:31:26,854 INFO  [ComputationPool] bulk/trash: Starting pool
+15:31:26,854 INFO  [ComputationPool] bulk/automation: Starting pool
+15:31:26,854 INFO  [ComputationPool] bulk/automationUi: Starting pool
+15:31:26,855 INFO  [ComputationPool] bulk/extractBinaryFulltext: Starting pool
+15:31:26,855 INFO  [WorkManagerImpl] Activated work queue default, WorkQueueDescriptor(id=default categories=[] queuing=true processing=true maxThreads=4 capacity=-1)
+15:31:26,855 INFO  [WorkManagerImpl] Activated work queue blobs, WorkQueueDescriptor(id=blobs categories=[blobListZip] queuing=true processing=true maxThreads=2 capacity=-1)
+15:31:26,856 INFO  [WorkManagerImpl] Activated work queue updateACEStatus, WorkQueueDescriptor(id=updateACEStatus categories=[updateACEStatus] queuing=true processing=true maxThreads=1 capacity=-1)
+15:31:26,856 INFO  [WorkManagerImpl] Activated work queue computeDigest, WorkQueueDescriptor(id=computeDigest categories=[computeDigest] queuing=true processing=true maxThreads=2 capacity=-1)
+15:31:26,856 INFO  [WorkManagerImpl] Activated work queue transientStorageGC, WorkQueueDescriptor(id=transientStorageGC categories=[transientStorageGC] queuing=true processing=true maxThreads=1 capacity=-1)
+15:31:26,916 INFO  [OSGiRuntimeService] Nuxeo Platform Started
+======================================================================
+= Component Loading Status: Pending: 0 / Missing: 0 / Unstarted: 0 / Total: 198
+======================================================================
+15:31:27,203 INFO  [ComputationPool] bulk/setSystemProperties: Stopping
+15:31:27,203 INFO  [ComputationPool] blob/gc: Stopping
+15:31:27,203 INFO  [ComputationPool] retention/retentionExpired: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/automationUi: Stopping
+15:31:27,203 INFO  [ComputationPool] document/gc: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/garbageCollectOrphanVersions: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/garbageCollectOrphanBlobs: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/automation: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/trash: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/status: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/deletion: Stopping
+15:31:27,204 INFO  [ComputationPool] bulk/setProperties: Stopping
+15:31:27,261 INFO  [ComputationPool] bulk/extractBinaryFulltext: Stopping
+15:31:27,262 INFO  [ComputationPool] bulk/removeProxy: Stopping
+15:31:27,266 INFO  [ComputationPool] bulk/scroller: Stopping
+15:31:27,368 INFO  [AbstractRuntimeService] Stopping Nuxeo Runtime service: OSGi NXRuntime; version: 1.4.0
+15:31:27,368 INFO  [ComponentManagerImpl] Stopping Nuxeo Components
+15:31:27,368 INFO  [ComponentManagerImpl] Stop components (isStandby=false)
+15:31:27,369 INFO  [WorkManagerImpl] Deactivated work queue default
+15:31:27,369 INFO  [WorkManagerImpl] Deactivated work queue blobs
+15:31:27,370 INFO  [WorkManagerImpl] Deactivated work queue updateACEStatus
+15:31:27,370 INFO  [WorkManagerImpl] Deactivated work queue computeDigest
+15:31:27,370 INFO  [WorkManagerImpl] Deactivated work queue transientStorageGC
+15:31:27,372 INFO  [QuartzScheduler] Scheduler Quartz_$_NON_CLUSTERED paused.
+15:31:27,373 INFO  [RepositoryService] Shutting down repository manager
+15:31:27,375 INFO  [DataSourceComponent] Unregistering DataSourceLink: java:comp/env/jdbc/repository_test
+15:31:27,375 INFO  [DataSourceComponent] Unregistering DataSourceLink: java:comp/env/jdbc/nxsqldirectory
+15:31:27,376 INFO  [DataSourceComponent] Unregistering datasource: jdbc/nuxeojunittests
+15:31:27,376 INFO  [ComponentManagerImpl] Deactivate components
+15:31:27,376 INFO  [UserService] UserService deactivated
+15:31:27,377 INFO  [QuartzScheduler] Scheduler Quartz_$_NON_CLUSTERED shutting down.
+15:31:27,377 INFO  [QuartzScheduler] Scheduler Quartz_$_NON_CLUSTERED paused.
+15:31:27,377 INFO  [QuartzScheduler] Scheduler Quartz_$_NON_CLUSTERED shutdown complete.

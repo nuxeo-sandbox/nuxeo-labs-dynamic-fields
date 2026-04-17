@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<component name="nuxeo.labs.dynamic.fields.operations">
+
+  <extension point="operations" target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
+    <operation class="nuxeo.labs.dynamic.fields.GetDocTypes"/>
+  </extension>
+
+</component>

@@ -1,0 +1,910 @@
+nuxeo.labs.dynamic.fields:nuxeo-labs-dynamic-fields-package:2025.1.0-SNAPSHOT:zip::
+ |-- org.nuxeo.ecm.distribution:nuxeo-nxr-server:2025.16.13:zip::provided
+ |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- xerces:xercesImpl:2.12.2-nx1:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.freemarker:freemarker:2.3.34:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile (scope managed from provided)
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |-- org.apache.commons:commons-text:1.15.0:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-annotations:2.21:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.dataformat:jackson-dataformat-properties:2.21.1:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- xerces:xercesImpl:2.12.2-nx1:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.runtime:nuxeo-runtime-datasource:2025.16.13:jar::compile
+ |--  |--  |-- commons-beanutils:commons-beanutils:1.11.0:jar::compile
+ |--  |--  |--  |-- commons-logging:commons-logging:1.3.5:jar::compile
+ |--  |--  |--  |-- commons-collections:commons-collections:3.2.2:jar::compile
+ |--  |--  |-- commons-collections:commons-collections:3.2.2:jar::compile
+ |--  |--  |-- org.apache.commons:commons-dbcp2:2.14.0-NX01:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-pool2:2.13.1:jar::compile (version managed from 2.13.0)
+ |--  |--  |--  |-- commons-logging:commons-logging:1.3.5:jar::compile
+ |--  |--  |--  |-- jakarta.transaction:jakarta.transaction-api:2.0.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.runtime:nuxeo-runtime-deploy:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-launcher-commons:2025.16.13:jar::compile
+ |--  |--  |--  |-- net.jodah:failsafe:2.4.4:jar::compile
+ |--  |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-text:1.15.0:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.freemarker:freemarker:2.3.34:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime (scope managed from provided)
+ |--  |--  |--  |-- com.sun.activation:jakarta.activation:2.0.1:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-osgi:2025.16.13:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.geronimo.components:geronimo-transaction:4.0.0-NX1:jar::compile
+ |--  |--  |--  |-- jakarta.resource:jakarta.resource-api:2.1.0:jar::compile
+ |--  |--  |--  |--  |-- jakarta.transaction:jakarta.transaction-api:2.0.1:jar::compile
+ |--  |--  |--  |-- jakarta.transaction:jakarta.transaction-api:2.0.1:jar::compile
+ |--  |--  |-- jakarta.transaction:jakarta.transaction-api:2.0.1:jar::compile
+ |--  |--  |-- org.apache.xbean:xbean-naming:4.30:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.grpc:grpc-context:1.79.0:jar::compile (version managed from 1.27.2)
+ |--  |--  |--  |--  |-- io.grpc:grpc-api:1.79.0:jar::runtime
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- commons-beanutils:commons-beanutils:1.11.0:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.lib.runtime:nuxeo-runtime-log4j:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime (scope managed from provided)
+ |--  |--  |-- org.nuxeo.lib.stream:nuxeo-stream:2025.16.13:jar::compile (scope managed from provided)
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-graphite:5.0.6:jar::compile
+ |--  |--  |--  |-- com.rabbitmq:amqp-client:5.29.0:jar::compile (version managed from 5.28.0)
+ |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime (scope managed from compile)
+ |--  |--  |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-resolver:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |-- io.netty:netty-codec:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-codec-base:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-codec-compression:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-codec-base:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- at.yawk.lz4:lz4-java:1.10.1:jar::runtime (scope managed from compile)
+ |--  |--  |--  |--  |--  |-- io.netty:netty-codec-protobuf:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-codec-base:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-codec-marshalling:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-codec-base:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |-- io.netty:netty-handler:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-transport-native-unix-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-common:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-resolver:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-buffer:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-transport:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |--  |-- io.netty:netty-codec-base:4.2.10.Final:jar::compile
+ |--  |--  |--  |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile
+ |--  |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-jmx:5.0.6:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-log4j2:5.0.6:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime (scope managed from compile)
+ |--  |--  |-- io.dropwizard.metrics5:metrics-jvm:5.0.6:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- org.coursera:metrics-datadog:2.0.0-RC2:jar::compile
+ |--  |--  |--  |-- org.apache.httpcomponents:fluent-hc:4.5.5:jar::compile
+ |--  |--  |--  |-- com.datadoghq:java-dogstatsd-client:2.6.1:jar::compile
+ |--  |--  |--  |--  |-- com.github.jnr:jnr-unixsocket:0.18:jar::compile
+ |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-ffi:2.1.4:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jffi:1.2.15:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jffi:1.2.15:jar:native:runtime
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-x86asm:1.0.2:jar::compile
+ |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-constants:0.9.8:jar::compile
+ |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-enxio:0.16:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-constants:0.9.8:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-ffi:2.1.4:jar::compile
+ |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-posix:3.0.35:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-ffi:2.1.4:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.github.jnr:jnr-constants:0.9.8:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-exporter-trace-jaeger:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-exporter-trace-util:0.31.1:jar::compile
+ |--  |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.jaegertracing:jaeger-client:0.33.1:jar::compile
+ |--  |--  |--  |--  |-- io.jaegertracing:jaeger-thrift:1.8.1:jar::compile (version managed from 0.33.1)
+ |--  |--  |--  |--  |--  |-- org.apache.thrift:libthrift:0.22.0:jar::compile (version managed from 0.15.0)
+ |--  |--  |--  |--  |--  |--  |-- org.apache.httpcomponents.client5:httpclient5:5.2.1:jar::runtime
+ |--  |--  |--  |--  |--  |--  |--  |-- org.apache.httpcomponents.core5:httpcore5-h2:5.2:jar::runtime
+ |--  |--  |--  |--  |--  |--  |--  |--  |-- org.apache.httpcomponents.core5:httpcore5:5.2:jar::runtime (scope managed from compile)
+ |--  |--  |--  |--  |--  |--  |--  |-- org.apache.httpcomponents.core5:httpcore5:5.2:jar::runtime (scope managed from compile)
+ |--  |--  |--  |--  |--  |--  |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- org.apache.httpcomponents.core5:httpcore5:5.2:jar::runtime
+ |--  |--  |--  |--  |--  |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile (scope managed from runtime)
+ |--  |--  |--  |--  |--  |-- com.squareup.okhttp3:okhttp:4.12.0:jar::compile (version managed from 4.9.3)
+ |--  |--  |--  |--  |--  |--  |-- com.squareup.okio:okio:3.6.0:jar::compile
+ |--  |--  |--  |--  |--  |--  |--  |-- com.squareup.okio:okio-jvm:3.16.4:jar::compile (version managed from 3.6.0)
+ |--  |--  |--  |--  |--  |--  |-- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21:jar::compile
+ |--  |--  |--  |--  |--  |--  |--  |-- org.jetbrains.kotlin:kotlin-stdlib:1.8.21:jar::compile
+ |--  |--  |--  |--  |--  |--  |--  |--  |-- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.21:jar::compile
+ |--  |--  |--  |--  |--  |--  |--  |-- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21:jar::compile
+ |--  |--  |--  |--  |--  |--  |--  |--  |-- org.jetbrains.kotlin:kotlin-stdlib:1.8.21:jar::compile
+ |--  |--  |--  |--  |-- io.jaegertracing:jaeger-core:0.33.1:jar::compile
+ |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-api:0.31.0:jar::compile
+ |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-util:0.31.0:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-noop:0.31.0:jar::compile
+ |--  |--  |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-api:0.31.0:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-api:0.31.0:jar::compile
+ |--  |--  |--  |--  |-- io.jaegertracing:jaeger-tracerresolver:0.33.1:jar::compile
+ |--  |--  |--  |--  |--  |-- io.opentracing.contrib:opentracing-tracerresolver:0.1.5:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-api:0.31.0:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- io.opentracing:opentracing-util:0.31.0:jar::compile (scope managed from provided)
+ |--  |--  |--  |--  |--  |-- io.jaegertracing:jaeger-core:0.33.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-exporter-trace-datadog:0.31.1:jar::compile
+ |--  |--  |--  |-- com.google.code.gson:gson:2.13.2:jar::compile (version managed from 2.8.6)
+ |--  |--  |--  |-- com.google.auto.value:auto-value:1.11.1:jar::compile (version managed from 1.4)
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-exporter-trace-util:0.31.1:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-exporter-trace-zipkin:0.31.1:jar::compile
+ |--  |--  |--  |-- io.zipkin.reporter2:zipkin-reporter:2.7.14:jar::compile
+ |--  |--  |--  |--  |-- io.zipkin.zipkin2:zipkin:2.12.0:jar::compile
+ |--  |--  |--  |-- io.zipkin.reporter2:zipkin-sender-urlconnection:2.7.14:jar::compile
+ |--  |--  |--  |--  |-- io.zipkin.reporter2:zipkin-reporter:2.7.14:jar::compile
+ |--  |--  |--  |--  |-- io.zipkin.zipkin2:zipkin:2.12.0:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-exporter-trace-util:0.31.1:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-exporter-stats-prometheus:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-exporter-metrics-util:0.31.1:jar::compile
+ |--  |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.prometheus:simpleclient:0.11.0:jar::compile (version managed from 0.6.0)
+ |--  |--  |--  |--  |-- io.prometheus:simpleclient_tracer_otel:0.11.0:jar::compile
+ |--  |--  |--  |--  |--  |-- io.prometheus:simpleclient_tracer_common:0.11.0:jar::compile
+ |--  |--  |--  |--  |-- io.prometheus:simpleclient_tracer_otel_agent:0.11.0:jar::compile
+ |--  |--  |--  |--  |--  |-- io.prometheus:simpleclient_tracer_common:0.11.0:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-contrib-dropwizard5:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-impl-core:0.31.1:jar::compile
+ |--  |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-contrib-zpages:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-contrib-grpc-metrics:0.31.1:jar::compile
+ |--  |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- io.prometheus:simpleclient_httpserver:0.11.0:jar::compile
+ |--  |--  |--  |-- io.prometheus:simpleclient_common:0.11.0:jar::compile
+ |--  |--  |--  |--  |-- io.prometheus:simpleclient:0.11.0:jar::compile
+ |--  |--  |--  |-- io.prometheus:simpleclient:0.11.0:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime (scope managed from provided)
+ |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.runtime:nuxeo-runtime-osgi:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- com.sun.xsom:xsom:20140925:jar::compile
+ |--  |--  |--  |-- relaxngDatatype:relaxngDatatype:20020414:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- jakarta.validation:jakarta.validation-api:3.0.2:jar::compile
+ |--  |--  |-- org.bouncycastle:bcprov-jdk18on:1.83:jar::compile
+ |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |--  |-- com.google.guava:failureaccess:1.0.3:jar::compile
+ |--  |--  |--  |-- com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava:jar::compile
+ |--  |--  |--  |-- org.jspecify:jspecify:1.0.0:jar::compile
+ |--  |--  |--  |-- com.google.errorprone:error_prone_annotations:2.48.0:jar::compile (version managed from 2.41.0)
+ |--  |--  |--  |-- com.google.j2objc:j2objc-annotations:3.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-annotations:2.21:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-kv:2025.16.13:jar::compile
+ |--  |--  |--  |-- net.jodah:expiringmap:0.5.11:jar::compile
+ |--  |--  |--  |-- jakarta.validation:jakarta.validation-api:3.0.2:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- jakarta.transaction:jakarta.transaction-api:2.0.1:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-management:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-migration:2025.16.13:jar::compile
+ |--  |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-kv:2025.16.13:jar::compile
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.commons:commons-pool2:2.13.1:jar::compile
+ |--  |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-datasource:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-bulk:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-query:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-management:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.javasimon:javasimon-jmx:2.5.0:jar::compile
+ |--  |--  |--  |--  |-- org.javasimon:javasimon-jdbc3:2.5.0:jar::compile
+ |--  |--  |--  |-- com.thoughtworks.xstream:xstream:1.4.21:jar::compile
+ |--  |--  |--  |--  |-- io.github.x-stream:mxparser:1.2.2:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-datasource:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-reload:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-management:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.lib.stream:nuxeo-stream:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-stream:2025.16.13:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- org.openjdk.nashorn:nashorn-core:15.7:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-mimetype:2025.16.13:jar::compile
+ |--  |--  |-- jmimemagic:jmimemagic:0.1.2:jar::compile
+ |--  |--  |--  |-- oro:oro:2.0.8:jar::compile
+ |--  |--  |-- org.apache.poi:poi:5.5.1:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-math3:3.6.1:jar::compile
+ |--  |--  |--  |-- com.zaxxer:SparseBitSet:1.3:jar::compile
+ |--  |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.apache.poi:poi-scratchpad:5.5.1:jar::compile
+ |--  |--  |--  |-- org.apache.poi:poi:5.5.1:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-math3:3.6.1:jar::compile
+ |--  |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-storage:2025.16.13:jar::compile
+ |--  |--  |-- net.htmlparser.jericho:jericho-html:3.4:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-query:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.commons:commons-text:1.15.0:jar::compile
+ |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-query:2025.16.13:jar::compile
+ |--  |--  |-- cup:java-cup:0.11a:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |-- org.apache.avro:avro:1.12.1:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-compress:1.28.0:jar::compile
+ |--  |--  |-- org.apache.commons:commons-csv:1.14.1:jar::compile
+ |--  |--  |-- org.dom4j:dom4j:2.2.0:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.1:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-annotations:2.21:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- jaxen:jaxen:2.0.0:jar::compile
+ |--  |--  |-- org.glassfish.jersey.core:jersey-server:3.1.11:jar::compile
+ |--  |--  |--  |-- org.glassfish.jersey.core:jersey-client:3.1.11:jar::compile
+ |--  |--  |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |--  |-- jakarta.validation:jakarta.validation-api:3.0.2:jar::compile
+ |--  |--  |-- org.openjdk.nashorn:nashorn-core:15.7:jar::compile
+ |--  |--  |--  |-- org.ow2.asm:asm-commons:9.9.1:jar::compile (version managed from 7.3.1)
+ |--  |--  |--  |--  |-- org.ow2.asm:asm:9.9.1:jar::compile
+ |--  |--  |--  |--  |-- org.ow2.asm:asm-tree:9.9.1:jar::compile
+ |--  |--  |--  |-- org.ow2.asm:asm-tree:9.9.1:jar::compile (version managed from 7.3.1)
+ |--  |--  |--  |--  |-- org.ow2.asm:asm:9.9.1:jar::compile
+ |--  |--  |--  |-- org.ow2.asm:asm-util:9.9.1:jar::compile (version managed from 7.3.1)
+ |--  |--  |--  |--  |-- org.ow2.asm:asm-analysis:9.9.1:jar::compile
+ |--  |--  |--  |--  |--  |-- org.ow2.asm:asm-tree:9.9.1:jar::compile
+ |--  |--  |--  |--  |-- org.ow2.asm:asm:9.9.1:jar::compile
+ |--  |--  |--  |--  |-- org.ow2.asm:asm-tree:9.9.1:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-stream:2025.16.13:jar::compile
+ |--  |--  |--  |-- io.confluent:kafka-schema-registry-client:7.9.5:jar::compile
+ |--  |--  |--  |--  |-- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.1:jar::compile (version managed from 2.16.0)
+ |--  |--  |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |--  |--  |-- io.swagger.core.v3:swagger-annotations:2.1.10:jar::compile
+ |--  |--  |--  |--  |-- io.confluent:common-utils:7.9.5:jar::compile
+ |--  |--  |--  |--  |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile
+ |--  |--  |--  |-- io.confluent:kafka-avro-serializer:7.9.5:jar::compile
+ |--  |--  |--  |--  |-- io.confluent:kafka-schema-serializer:7.9.5:jar::compile
+ |--  |--  |--  |--  |--  |-- com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.21.1:jar::compile (version managed from 2.16.0)
+ |--  |--  |--  |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-annotations:2.21:jar::compile
+ |--  |--  |--  |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |--  |--  |--  |-- io.confluent:kafka-schema-registry-client:7.9.5:jar::compile
+ |--  |--  |--  |--  |--  |-- io.confluent:common-utils:7.9.5:jar::compile
+ |--  |--  |--  |--  |-- io.confluent:logredactor:1.0.12:jar::compile
+ |--  |--  |--  |--  |--  |-- com.google.re2j:re2j:1.6:jar::compile
+ |--  |--  |--  |--  |--  |-- io.confluent:logredactor-metrics:1.0.12:jar::compile
+ |--  |--  |--  |--  |--  |-- com.eclipsesource.minimal-json:minimal-json:0.9.5:jar::compile
+ |--  |--  |--  |--  |-- io.confluent:kafka-schema-registry-client:7.9.5:jar::compile
+ |--  |--  |--  |--  |-- io.confluent:common-utils:7.9.5:jar::compile
+ |--  |--  |--  |-- org.apache.kafka:kafka-clients:3.9.2:jar::compile
+ |--  |--  |--  |--  |-- com.github.luben:zstd-jni:1.5.6-4:jar::runtime
+ |--  |--  |--  |--  |-- at.yawk.lz4:lz4-java:1.10.1:jar::runtime
+ |--  |--  |--  |--  |-- org.xerial.snappy:snappy-java:1.1.10.5:jar::runtime
+ |--  |--  |--  |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile (scope managed from runtime)
+ |--  |--  |--  |-- org.nuxeo.lib.runtime:nuxeo-runtime-log4j:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.lib.stream:nuxeo-stream:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-management:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-launcher-commons:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.apache.avro:avro:1.12.1:jar::compile
+ |--  |--  |--  |-- net.jodah:failsafe:2.4.4:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-query:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert:2025.16.13:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-mimetype:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-plugins:2025.16.13:jar::compile
+ |--  |--  |-- jakarta.mail:jakarta.mail-api:2.1.5:jar::compile
+ |--  |--  |--  |-- jakarta.activation:jakarta.activation-api:2.1.4:jar::compile
+ |--  |--  |-- org.eclipse.angus:jakarta.mail:2.0.5:jar::compile
+ |--  |--  |--  |-- org.eclipse.angus:angus-activation:2.0.3:jar::runtime
+ |--  |--  |--  |--  |-- jakarta.activation:jakarta.activation-api:2.1.4:jar::compile
+ |--  |--  |--  |-- jakarta.activation:jakarta.activation-api:2.1.4:jar::compile
+ |--  |--  |--  |-- jakarta.mail:jakarta.mail-api:2.1.5:jar::compile (scope managed from provided)
+ |--  |--  |-- org.apache.pdfbox:pdfbox:3.0.6:jar::compile
+ |--  |--  |--  |-- org.apache.pdfbox:fontbox:3.0.6:jar::compile
+ |--  |--  |--  |--  |-- org.apache.pdfbox:pdfbox-io:3.0.6:jar::compile
+ |--  |--  |--  |--  |-- commons-logging:commons-logging:1.3.5:jar::compile
+ |--  |--  |--  |-- org.apache.pdfbox:pdfbox-io:3.0.6:jar::compile
+ |--  |--  |--  |-- commons-logging:commons-logging:1.3.5:jar::compile
+ |--  |--  |-- org.apache.poi:poi-ooxml:5.5.1:jar::compile
+ |--  |--  |--  |-- org.apache.poi:poi-ooxml-lite:5.5.1:jar::compile
+ |--  |--  |--  |--  |-- org.apache.xmlbeans:xmlbeans:5.3.0:jar::compile
+ |--  |--  |--  |-- com.github.virtuald:curvesapi:1.08:jar::compile
+ |--  |--  |--  |-- org.apache.poi:poi:5.5.1:jar::compile
+ |--  |--  |--  |-- org.apache.xmlbeans:xmlbeans:5.3.0:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-compress:1.28.0:jar::compile
+ |--  |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |--  |-- org.apache.pdfbox:pdfbox:3.0.6:jar::compile
+ |--  |--  |-- org.apache.xmlbeans:xmlbeans:5.3.0:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- net.htmlparser.jericho:jericho-html:3.4:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-commandline-executor:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-bulk:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.lib.stream:nuxeo-stream:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.jgrapht:jgrapht-core:1.5.2:jar::compile
+ |--  |--  |--  |--  |-- org.jheaps:jheaps:0.14:jar::compile
+ |--  |--  |--  |--  |-- org.apfloat:apfloat:1.10.1:jar::compile
+ |--  |--  |--  |-- commons-cli:commons-cli:1.11.0:jar::compile
+ |--  |--  |--  |-- org.apache.kafka:kafka-clients:3.9.2:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |--  |-- org.apache.avro:avro:1.12.1:jar::compile
+ |--  |--  |--  |-- net.jodah:failsafe:2.4.4:jar::compile
+ |--  |--  |--  |-- io.confluent:kafka-avro-serializer:7.9.5:jar::compile
+ |--  |--  |--  |-- io.confluent:kafka-schema-registry-client:7.9.5:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |--  |-- io.dropwizard.metrics5:metrics-graphite:5.0.6:jar::compile (scope managed from provided)
+ |--  |--  |--  |-- org.coursera:metrics-datadog:2.0.0-RC2:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- com.google.code.externalsortinginjava:externalsortinginjava:0.6.6:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-stream:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-kv:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-query:2025.16.13:jar::compile
+ |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |-- org.apache.avro:avro:1.12.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- jakarta.validation:jakarta.validation-api:3.0.2:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.core:nuxeo-core-search:2025.16.13:jar::compile
+ |--  |--  |-- com.fasterxml.uuid:java-uuid-generator:5.2.0:jar::compile
+ |--  |--  |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile
+ |--  |--  |-- org.apache.avro:avro:1.12.1:jar::compile
+ |--  |--  |-- net.htmlparser.jericho:jericho-html:3.4:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-convert:2025.16.13:jar::compile
+ |--  |--  |-- com.cforcoding.jmd:jmd:0.8.1-tomasol-3e60e36137:jar::compile
+ |--  |--  |-- com.ibm.icu:icu4j:76.1:jar::compile
+ |--  |--  |-- commons-io:commons-io:2.21.0:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-plugins:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-mimetype:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-commandline-executor:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-types:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-commandline-executor:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-directory-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-directory-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-reload:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.lib.runtime:nuxeo-runtime-launcher:2025.16.13:jar::compile
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-deploy:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-directory-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-query:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-storage:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- org.apache.commons:commons-csv:1.14.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-login:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-web-common:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.httpcomponents:httpclient:4.5.14:jar::compile
+ |--  |--  |-- com.thetransactioncompany:cors-filter:3.1:jar::compile
+ |--  |--  |--  |-- com.thetransactioncompany:java-property-utils:1.17:jar::compile
+ |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |--  |-- org.glassfish.hk2:osgi-resource-locator:1.0.3:jar::compile
+ |--  |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |-- io.opencensus:opencensus-contrib-http-util:0.31.1:jar::compile
+ |--  |--  |--  |-- io.opencensus:opencensus-api:0.31.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-usermanager:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-management:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-login:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-management:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-jtajca:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-directory-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-url:2025.16.13:jar::compile
+ |--  |--  |-- io.dropwizard.metrics5:metrics-core:5.0.6:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-usermanager:2025.16.13:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-directory-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-directory-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.webengine:nuxeo-webengine-core:2025.16.13:jar::compile
+ |--  |--  |-- org.glassfish.jersey.containers:jersey-container-servlet-core:3.1.11:jar::compile
+ |--  |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |--  |-- org.glassfish.jersey.core:jersey-server:3.1.11:jar::compile
+ |--  |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |-- org.codehaus.groovy:groovy-jsr223:3.0.25:jar::compile
+ |--  |--  |--  |-- org.codehaus.groovy:groovy:3.0.25:jar::compile
+ |--  |--  |-- org.nuxeo.build:nuxeo-apt-extensions:1.0:jar::compile
+ |--  |--  |-- org.nuxeo.build:nuxeo-webengine-apt:1.2:jar::compile
+ |--  |--  |--  |-- org.nuxeo.build:nuxeo-apt-extensions:1.0:jar::compile
+ |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-osgi:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.webengine:nuxeo-webengine-rest:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-web-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-rendering:2025.16.13:jar::compile
+ |--  |--  |-- org.freemarker:freemarker:2.3.34:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.webengine:nuxeo-webengine-rest:2025.16.13:jar::compile
+ |--  |--  |-- org.glassfish.jersey.inject:jersey-hk2:3.1.11:jar::compile
+ |--  |--  |--  |-- org.glassfish.hk2:hk2-locator:3.0.6:jar::compile
+ |--  |--  |--  |--  |-- org.glassfish.hk2.external:aopalliance-repackaged:3.0.6:jar::compile
+ |--  |--  |--  |--  |-- org.glassfish.hk2:hk2-api:3.0.6:jar::compile
+ |--  |--  |--  |--  |--  |-- org.glassfish.hk2:hk2-utils:3.0.6:jar::compile
+ |--  |--  |--  |--  |--  |-- org.glassfish.hk2.external:aopalliance-repackaged:3.0.6:jar::compile
+ |--  |--  |--  |--  |-- org.glassfish.hk2:hk2-utils:3.0.6:jar::compile
+ |--  |--  |--  |--  |--  |-- jakarta.validation:jakarta.validation-api:3.0.2:jar::compile
+ |--  |--  |--  |--  |-- org.javassist:javassist:3.30.2-GA:jar::compile
+ |--  |--  |--  |-- org.javassist:javassist:3.30.2-GA:jar::compile
+ |--  |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |-- org.ow2.asm:asm:9.9.1:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.compendium:4.3.1:jar::compile
+ |--  |--  |-- org.glassfish.jersey.core:jersey-common:3.1.11:jar::compile
+ |--  |--  |-- org.glassfish.jersey.core:jersey-server:3.1.11:jar::compile
+ |--  |--  |-- org.glassfish.jersey.containers:jersey-container-servlet-core:3.1.11:jar::compile
+ |--  |--  |-- jakarta.ws.rs:jakarta.ws.rs-api:3.1.0:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-rendering:2025.16.13:jar::compile
+ |--  |--  |-- org.freemarker:freemarker:2.3.34:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-web-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.build:nuxeo-apt-extensions:1.0:jar::compile
+ |--  |--  |-- org.nuxeo.build:nuxeo-webengine-apt:1.2:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-rendering:2025.16.13:jar::compile
+ |--  |--  |-- org.wikimodel:wem:2.0.2:jar::compile
+ |--  |--  |--  |-- net.java.dev.javacc:javacc:4.0:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- org.freemarker:freemarker:2.3.34:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.automation:nuxeo-automation-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-mail:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.apache.commons:commons-exec:1.6.0:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |--  |-- jakarta.mail:jakarta.mail-api:2.1.5:jar::compile
+ |--  |--  |--  |-- org.eclipse.angus:jakarta.mail:2.0.5:jar::compile
+ |--  |--  |--  |-- com.sun.activation:jakarta.activation:2.0.1:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-actions-core:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime-metrics:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |--  |-- org.mvel:mvel2:2.5.2.Final:jar::compile
+ |--  |--  |-- org.apache.pdfbox:pdfbox-io:3.0.6:jar::compile
+ |--  |--  |--  |-- commons-logging:commons-logging:1.3.5:jar::compile
+ |--  |--  |-- com.sun.activation:jakarta.activation:2.0.1:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-event:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-rendering:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-convert:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-usermanager:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-convert-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-schema:2025.16.13:jar::compile
+ |--  |--  |-- jakarta.mail:jakarta.mail-api:2.1.5:jar::compile
+ |--  |--  |-- org.freemarker:freemarker:2.3.34:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.webengine:nuxeo-webengine-core:2025.16.13:jar::compile
+ |--  |--  |-- org.osgi:org.osgi.core:4.3.1:jar::compile
+ |--  |--  |-- org.codehaus.groovy:groovy-jsr223:3.0.25:jar::compile
+ |--  |--  |-- com.google.guava:guava:33.5.0-jre:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-databind:2.21.1:jar::compile
+ |--  |--  |-- org.apache.pdfbox:pdfbox:3.0.6:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-url:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-api:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.core:nuxeo-core-io:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.ecm.platform:nuxeo-platform-types:2025.16.13:jar::compile
+ |--  |--  |-- com.fasterxml.jackson.core:jackson-core:2.21.1:jar::compile
+ |--  |--  |-- org.nuxeo.common:nuxeo-common:2025.16.13:jar::compile
+ |--  |--  |-- org.nuxeo.runtime:nuxeo-runtime:2025.16.13:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime (scope managed from compile)
+ |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime (scope managed from compile)
+ |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime (scope managed from compile)
+ |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime (scope managed from compile)
+ |-- nuxeo.labs.dynamic.fields:nuxeo-labs-dynamic-fields-core:2025.1.0-SNAPSHOT:jar::compile
+ |--  |-- org.nuxeo.ecm.automation:nuxeo-automation-core:2025.16.13:jar::compile
+ |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |-- org.jspecify:jspecify:1.0.0:jar::compile (scope managed from provided)
+ |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |--  |-- org.jspecify:jspecify:1.0.0:jar::compile (scope managed from provided)
+ |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |-- org.apache.logging.log4j:log4j-1.2-api:2.25.3:jar::runtime
+ |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime (scope managed from compile)
+ |-- org.apache.logging.log4j:log4j-slf4j-impl:2.25.3:jar::runtime
+ |--  |-- org.slf4j:slf4j-api:1.7.36:jar::compile
+ |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |--  |-- org.apache.logging.log4j:log4j-core:2.25.3:jar::runtime
+ |-- org.apache.logging.log4j:log4j-appserver:2.25.3:jar::runtime
+ |--  |-- org.apache.logging.log4j:log4j-api:2.25.3:jar::compile
+ |-- junit:junit:4.13.2:jar::test

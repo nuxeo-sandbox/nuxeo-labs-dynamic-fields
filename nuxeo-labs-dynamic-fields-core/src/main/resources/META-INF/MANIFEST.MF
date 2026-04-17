@@ -1,0 +1,10 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Vendor: nuxeo.labs.dynamic.fields
+Bundle-Version: 1.0.0
+Bundle-Name: nuxeo-labs-dynamic-fields-core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: nuxeo.labs.dynamic.fields.nuxeo-labs-dynamic-fields-core;singleton=true
+Nuxeo-Component: OSGI-INF/dynamic-fields-operations.xml,
+ OSGI-INF/dynamic-fields-schemas-contrib.xml
