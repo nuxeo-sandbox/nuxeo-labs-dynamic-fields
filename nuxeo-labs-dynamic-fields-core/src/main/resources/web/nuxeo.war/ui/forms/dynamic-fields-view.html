@@ -22,14 +22,14 @@ Layout block for viewing dynamic field values on documents with the DynamicField
     </style>
 
     <!-- Fetch the referenced CustomSchemaDef document -->
-    <nuxeo-resource id="schemaDefLoader"
-                    path="[[_computeSchemaDefPath(document)]]"
-                    schemas="custom-schema-def"
+    <nuxeo-document id="schemaDefLoader"
+                    doc-id="[[_getSchemaDefDocId(document)]]"
+                    schemas="*"
                     response="{{_schemaDef}}"
                     auto>
-    </nuxeo-resource>
+    </nuxeo-document>
 
-    <template is="dom-if" if="[[_hasFacet(document)]]">
+    <template is="dom-if" if="[[hasFacet(document, 'DynamicFields')]]" restamp>
       <nuxeo-card heading="Dynamic Fields">
 
         <template is="dom-if" if="[[!_hasDefinition(_schemaDef)]]">
@@ -39,7 +39,7 @@ Layout block for viewing dynamic field values on documents with the DynamicField
         <template is="dom-if" if="[[_hasDefinition(_schemaDef)]]">
 
           <div class="dynamic-field">
-            <span class="field-label">Type</span>
+            <label>Type</span>
             <div class="field-value">[[_schemaDef.properties.csd:defForTyp]]</div>
           </div>
 
@@ -48,7 +48,7 @@ Layout block for viewing dynamic field values on documents with the DynamicField
             <!-- String -->
             <template is="dom-if" if="[[_isType(fieldDef, 'string')]]">
               <div class="dynamic-field">
-                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <label>[[fieldDef.fieldName]]</label>
                 <div class="field-value">[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'stringValue')]]</div>
               </div>
             </template>
@@ -56,7 +56,7 @@ Layout block for viewing dynamic field values on documents with the DynamicField
             <!-- Integer -->
             <template is="dom-if" if="[[_isType(fieldDef, 'integer')]]">
               <div class="dynamic-field">
-                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <label>[[fieldDef.fieldName]]</label>
                 <div class="field-value">[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'integerValue')]]</div>
               </div>
             </template>
@@ -64,7 +64,7 @@ Layout block for viewing dynamic field values on documents with the DynamicField
             <!-- Double -->
             <template is="dom-if" if="[[_isType(fieldDef, 'double')]]">
               <div class="dynamic-field">
-                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <label>[[fieldDef.fieldName]]</label>
                 <div class="field-value">[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'doubleValue')]]</div>
               </div>
             </template>
@@ -72,15 +72,15 @@ Layout block for viewing dynamic field values on documents with the DynamicField
             <!-- Boolean -->
             <template is="dom-if" if="[[_isType(fieldDef, 'boolean')]]">
               <div class="dynamic-field">
-                <span class="field-label">[[fieldDef.fieldName]]</span>
-                <div class="field-value">[[_formatBoolean(_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'booleanValue'))]]</div>
+                <label>[[fieldDef.fieldName]]</label>
+                <paper-checkbox checked="[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'booleanValue')]]" disabled="true" name="aBool"></paper-checkbox>
               </div>
             </template>
 
             <!-- Date -->
             <template is="dom-if" if="[[_isType(fieldDef, 'date')]]">
               <div class="dynamic-field">
-                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <label>[[fieldDef.fieldName]]</label>
                 <div class="field-value">
                   <nuxeo-date datetime="[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'dateValue')]]"></nuxeo-date>
                 </div>
@@ -90,7 +90,7 @@ Layout block for viewing dynamic field values on documents with the DynamicField
             <!-- Blob -->
             <template is="dom-if" if="[[_isType(fieldDef, 'blob')]]">
               <div class="dynamic-field">
-                <span class="field-label">[[fieldDef.fieldName]]</span>
+                <label>[[fieldDef.fieldName]]</label>
                 <div class="field-value">
                   <template is="dom-if" if="[[_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'blobValue')]]">
                     <nuxeo-document-blob
@@ -122,20 +122,23 @@ Layout block for viewing dynamic field values on documents with the DynamicField
         document: {
           type: Object,
         },
-        _schemaDef: {
-          type: Object,
-        },
+        _schemaDef: Object
       },
 
-      _hasFacet: function(document) {
-        return document && document.facets && document.facets.indexOf('DynamicFields') !== -1;
-      },
-
-      _computeSchemaDefPath: function(document) {
-        if (!document || !document.properties || !document.properties['dynf:schemaDef']) {
+      _getSchemaDefDocId: function(doc) {
+        if(!doc || !doc.properties || !doc.properties['dynf:schemaDef']) {
           return null;
         }
-        return '/id/' + document.properties['dynf:schemaDef'];
+
+        switch(typeof doc.properties['dynf:schemaDef']) {
+          case 'string':
+            return doc.properties['dynf:schemaDef'];
+          case 'object':
+            return doc.properties['dynf:schemaDef'].uid;
+          default:
+            return null;
+        }
+        
       },
 
       _hasDefinition: function(schemaDef) {

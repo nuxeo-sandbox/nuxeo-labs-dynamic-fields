@@ -3,6 +3,9 @@
 Layout block for editing dynamic field values on documents with the DynamicFields facet.
 @group Nuxeo UI
 @element dynamic-fields-edit
+
+For simplicity, we only allow choosing the schema definition if it's not set yet. In a real implementation,
+you might want to allow changing it and handle the consequences (e.g. resetting values that don't match the new definition).
 -->
 <dom-module id="dynamic-fields-edit">
   <template>
@@ -12,21 +15,33 @@ Layout block for editing dynamic field values on documents with the DynamicField
       }
     </style>
 
-    <template is="dom-if" if="[[_hasFacet(document)]]">
-      <nuxeo-card heading="Dynamic Fields">
+    <nuxeo-document id="schemaDefLoader"></nuxeo-document>
 
-        <nuxeo-document-suggestion
-          role="widget"
-          label="Schema Definition"
-          name="schemaDef"
-          value="{{document.properties.dynf:schemaDef}}"
-          min-chars="0"
-          operation="DynamicFields.GetDocumentTypes"
-          schemas="custom-schema-def"
-          result-formatter="[[schemaDefFormatter]]"
-          selected-item="{{_selectedSchemaDef}}"
-          required
-        ></nuxeo-document-suggestion>
+    <template is="dom-if" if="[[hasFacet(document, 'DynamicFields')]]">
+      <nuxeo-card heading="Dynamic Fields">
+        <template is="dom-if" if="[[_canChooseSchemaDef(document)]]">
+          <nuxeo-document-suggestion
+            role="widget"
+            label="Schema Definition"
+            name="schemaDef"
+            value="{{document.properties.dynf:schemaDef}}"
+            min-chars="0"
+            operation="DynamicFields.GetDocumentTypes"
+            schemas="custom-schema-def"
+            result-formatter="[[schemaDefFormatter]]"
+            selected-item="{{_selectedSchemaDef}}"
+            required
+          ></nuxeo-document-suggestion>
+        </template>
+        <template is="dom-if" if="[[!_canChooseSchemaDef(document)]]">
+          <nuxeo-document-suggestion
+            role="widget"
+            label="Schema Definition"
+            name="schemaDef"
+            value="{{document.properties.dynf:schemaDef}}"
+            readonly
+          ></nuxeo-document-suggestion>
+        </template>
 
         <template is="dom-if" if="[[_hasDefinition(_selectedSchemaDef)]]">
           <template is="dom-repeat" items="[[_getFieldDefinitions(_selectedSchemaDef)]]" as="fieldDef">
@@ -79,14 +94,15 @@ Layout block for editing dynamic field values on documents with the DynamicField
             <!-- Boolean -->
             <template is="dom-if" if="[[_isType(fieldDef, 'boolean')]]">
               <div class="dynamic-field">
-                <nuxeo-checkbox
+                <label>[[fieldDef.fieldName]]</label>
+                <paper-checkbox
                   role="widget"
                   label="[[fieldDef.fieldName]]"
                   name="[[fieldDef.fieldName]]"
                   checked="{{_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'booleanValue')}}"
                   on-checked-changed="_onBooleanFieldChanged"
                   data-field-name$="[[fieldDef.fieldName]]"
-                ></nuxeo-checkbox>
+                ></paper-checkbox>
               </div>
             </template>
 
@@ -144,16 +160,51 @@ Layout block for editing dynamic field values on documents with the DynamicField
           type: Function,
           value: function() {
             return this._formatSchemaDef.bind(this);
-          },
-        },
+          }
+        }
       },
 
-      _hasFacet: function(document) {
-        return document && document.facets && document.facets.indexOf('DynamicFields') !== -1;
+      _canChooseSchemaDef: function(document) {
+        return !document || !document.properties || !document.properties['dynf:schemaDef'];
+      },
+
+      _layoutTypeHandler: function(document, layoutType) {
+        if (!this._canChooseSchemaDef(document)) {
+          let docId = this._getSchemaDefDocId(document);
+          if(docId) {
+            let schemaDefLoader =  this.$.schemaDefLoader;
+            schemaDefLoader.docId = docId;
+            schemaDefLoader.get()
+                           .then(function(response) {
+                              debugger
+                              this._selectedSchemaDef = response;
+                            }.bind(this))
+                            .catch(function(error) {
+                              console.error("Error getting the schema def: " + error)
+                              alert("Error: " + error);
+                            }.bind(this));
+          }
+        }
+      },
+
+      _getSchemaDefDocId: function(doc) {
+        if(!doc || !doc.properties || !doc.properties['dynf:schemaDef']) {
+          return null;
+        }
+
+        switch(typeof doc.properties['dynf:schemaDef']) {
+          case 'string':
+            return doc.properties['dynf:schemaDef'];
+          case 'object':
+            return doc.properties['dynf:schemaDef'].uid;
+          default:
+            return null;
+        }
+        
       },
 
       _formatSchemaDef: function(doc) {
-        return doc.properties['csd:defForTyp'];
+        return doc.title + " (" + doc.properties['csd:defForTyp'] + ")";
       },
 
       _hasDefinition: function(schemaDef) {
@@ -174,7 +225,10 @@ Layout block for editing dynamic field values on documents with the DynamicField
       },
 
       _schemaDefChanged: function(schemaDef) {
-        if (!schemaDef || !this.document) return;
+        if (!schemaDef || !this.document) {
+          return;
+        }
+
         // Initialize dynf:values array for each field in the definition
         var definitions = this._getFieldDefinitions(schemaDef);
         var currentValues = this.document.properties['dynf:values'] || [];

@@ -30,6 +30,9 @@ bin/
 *.bak
 *~gen
 .env
+nashorn_code_cache
+dev_null
+.vscode
 .settings
 .classpath
 .factorypath
