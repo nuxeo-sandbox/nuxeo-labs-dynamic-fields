@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="nuxeo.labs.dynamic.fields.pageproviders">
+
+  <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
+             point="providers">
+
+    <!--
+      Page provider for searching documents by dynamic field values.
+      Uses OpenSearch nested queries on dynf:values to ensure correlated
+      matching of fieldName + value within the same entry.
+
+      The base NXQL query filters by document type, path, lifecycle, etc.
+      Dynamic field criteria are passed as the "dynf_search" named parameter
+      (JSON array).
+
+      Requires the "dynamic-fields-opensearch" template to be active
+      in nuxeo.conf for proper nested index mapping.
+    -->
+    <genericPageProvider name="dynf_search"
+                         class="nuxeo.labs.dynamic.fields.DynamicFieldsSearchPageProvider">
+      <searchDocumentType>AdvancedSearch</searchDocumentType>
+      <pattern>
+        SELECT * FROM Document WHERE ecm:isVersion = 0
+          AND ecm:isTrashed = 0
+          AND ecm:mixinType = 'DynamicFields'
+      </pattern>
+      <pageSize>20</pageSize>
+    </genericPageProvider>
+
+  </extension>
+
+</component>
