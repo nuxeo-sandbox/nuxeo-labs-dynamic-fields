@@ -18,24 +18,37 @@
  */
 package nuxeo.labs.dynamic.fields;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.nuxeo.ecm.automation.AutomationService;
+import org.nuxeo.ecm.automation.OperationContext;
+import org.nuxeo.ecm.automation.OperationException;
 import org.nuxeo.ecm.automation.core.Constants;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.core.api.CoreSession;
-import org.nuxeo.ecm.core.api.NuxeoPrincipal;
+import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.runtime.api.Framework;
 
 /**
  * Returns the customer ID for the current user.
  * <p>
- * This default implementation returns a hard-coded value for development
- * and testing purposes. In production, override this operation with an
- * Automation Scripting in Nuxeo Studio that resolves the customer ID
- * from the current user's profile, organization, or any other source.
- * <p>
- * Example Studio Automation Scripting override:
+ * The customer ID is resolved by calling the automation chain/script
+ * configured via the {@code dynamicfields.customerid.chain} property.
+ * This property is typically set via an XML extension in Nuxeo Studio:
  * <pre>
- * // Operation ID: DynamicFields.GetCustomerId
+ * &lt;extension target="org.nuxeo.runtime.ConfigurationService" point="configuration"&gt;
+ *   &lt;property name="dynamicfields.customerid.chain"&gt;javascript.DynamicFields_GetCustomerId&lt;/property&gt;
+ * &lt;/extension&gt;
+ * </pre>
+ * <p>
+ * If the property is not set, a default hard-coded value ({@code ABCD-1234})
+ * is returned and a warning is logged once.
+ * <p>
+ * Example Studio Automation Scripting (named {@code DynamicFields_GetCustomerId}):
+ * <pre>
  * function run(input, params) {
  *   return currentUser.getPropertyValue("user:company");
  * }
@@ -46,19 +59,55 @@ import org.nuxeo.ecm.core.api.NuxeoPrincipal;
 @Operation(id = GetCustomerId.ID, category = Constants.CAT_SERVICES,
         label = "Dynamic Fields: Get Customer ID",
         description = "Returns the customer ID for the current user. "
-                + "Override this operation in Studio to provide your own resolution logic.")
+                + "Configure dynamicfields.customerid.chain via an XML extension "
+                + "to provide your own resolution logic.")
 public class GetCustomerId {
 
     public static final String ID = "DynamicFields.GetCustomerId";
 
-    // Default hard-coded value for development/testing
+    /** The nuxeo.conf property specifying the automation chain to call. */
+    public static final String CHAIN_PROPERTY = "dynamicfields.customerid.chain";
+
     private static final String DEFAULT_CUSTOMER_ID = "ABCD-1234";
+
+    private static final Logger log = LogManager.getLogger(GetCustomerId.class);
+
+    private static volatile boolean warnLogged = false;
 
     @Context
     protected CoreSession session;
 
+    @Context
+    protected AutomationService automationService;
+
     @OperationMethod
     public String run() {
-        return DEFAULT_CUSTOMER_ID;
+        String chainId = Framework.getProperty(CHAIN_PROPERTY);
+
+        if (StringUtils.isBlank(chainId)) {
+            if (!warnLogged) {
+                warnLogged = true;
+                log.warn("No '{}' property configured in nuxeo.conf. "
+                        + "Using default customer ID '{}'. "
+                        + "Set this property to the full ID of your automation chain/script "
+                        + "(e.g. 'javascript.DynamicFields_GetCustomerId').",
+                        CHAIN_PROPERTY, DEFAULT_CUSTOMER_ID);
+            }
+            return DEFAULT_CUSTOMER_ID;
+        }
+
+        try {
+            var ctx = new OperationContext(session);
+            Object result = automationService.run(ctx, chainId);
+            if (result instanceof String customerId) {
+                return customerId;
+            }
+            throw new NuxeoException(
+                    "Chain '%s' must return a String, got: %s".formatted(
+                            chainId, result != null ? result.getClass().getName() : "null"));
+        } catch (OperationException e) {
+            throw new NuxeoException(
+                    "Failed to resolve customer ID via chain '%s'".formatted(chainId), e);
+        }
     }
 }

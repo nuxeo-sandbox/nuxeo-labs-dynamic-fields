@@ -16,23 +16,33 @@ A Nuxeo LTS 2025 plugin that implements an Entity-Attribute-Value (EAV) pattern,
 
 ### Operations
 
-- **`DynamicFields.GetCustomerId`**: Returns the customer ID for the current user. The default implementation returns a hard-coded value (`ABCD-1234`) for development and testing. **You must override this operation** in production — see [Customer ID Resolution](#customer-id-resolution) below.
+- **`DynamicFields.GetCustomerId`**: Returns the customer ID for the current user. The default implementation returns a hard-coded value (`ABCD-1234`) for development and testing. **You must configure this** in production — see [Customer ID Resolution](#customer-id-resolution) below.
 - **`DynamicFields.GetDocumentTypes`**: Returns all `CustomSchemaDef` documents for the current customer (resolved via `GetCustomerId`). Used internally by the UI widgets — not intended for direct use.
 
 ## Customer ID Resolution
 
-Both schemas use a `customerId` field to associate data with a specific customer. The customer ID is resolved at runtime by the `DynamicFields.GetCustomerId` operation, which you **must override** in your Studio project to match your multi-tenancy model.
+Both schemas use a `customerId` field to associate data with a specific customer. The customer ID is resolved at runtime by the `DynamicFields.GetCustomerId` operation.
 
-To override, create an **Automation Scripting** in Nuxeo Studio with the operation ID `DynamicFields.GetCustomerId`. For example, if the customer ID is stored in the user's `company` field:
+By default, if no configuration is provided, the operation returns a hard-coded value (`ABCD-1234`) and logs a warning once. To provide your own resolution logic:
 
-```javascript
-// Automation Scripting — Operation ID: DynamicFields.GetCustomerId
-function run(input, params) {
-  return currentUser.getPropertyValue("user:company");
-}
-```
+1. Create an **Automation Scripting** in Nuxeo Studio (e.g. named `DynamicFields_GetCustomerId`) that returns the customer ID as a string. For example, if the customer ID is stored in the user's `company` field:
 
-Studio contributions load after plugin bundles, so your Automation Scripting automatically replaces the default implementation.
+    ```javascript
+    // Automation Scripting name: DynamicFields_GetCustomerId
+    function run(input, params) {
+      return currentUser.getPropertyValue("user:company");
+    }
+    ```
+
+2. Create an **XML Extension** in Nuxeo Studio to register the chain. Use the **full operation ID** (Studio Automation Scripting IDs are automatically prefixed with `javascript.`):
+
+    ```xml
+    <extension target="org.nuxeo.runtime.ConfigurationService" point="configuration">
+      <property name="dynamicfields.customerid.chain">javascript.DynamicFields_GetCustomerId</property>
+    </extension>
+    ```
+
+The configured chain is called every time the customer ID is needed (e.g. when listing schema definitions or rendering widgets).
 
 ## ACLs and Permissions
 

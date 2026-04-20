@@ -11,38 +11,42 @@
       }
     </style>
 
-    <nuxeo-input
-      role="widget"
-      label="Customer ID"
-      name="customerId"
-      value="[[document.properties.csd:customerId]]"
-      readonly
-    ></nuxeo-input>
+    <nuxeo-card>
 
-    <nuxeo-input
-      role="widget"
-      label="Type Name"
-      name="defForTyp"
-      value="[[document.properties.csd:defForTyp]]"
-      readonly
-    ></nuxeo-input>
+      <nuxeo-input
+        role="widget"
+        label="Customer ID"
+        name="customerId"
+        value="[[document.properties.csd:customerId]]"
+        readonly
+      ></nuxeo-input>
 
-    <nuxeo-data-table
-      role="widget"
-      label="Field Definitions"
-      items="[[document.properties.csd:definition]]"
-      name="definition"
-    >
-      <nuxeo-data-table-column name="Field Name">
-        <template>[[item.fieldName]]</template>
-      </nuxeo-data-table-column>
+      <nuxeo-input
+        role="widget"
+        label="Type Name"
+        name="defForTyp"
+        value="[[document.properties.csd:defForTyp]]"
+        readonly
+      ></nuxeo-input>
 
-      <nuxeo-data-table-column name="Field Type">
-        <template>
-          <nuxeo-directory-suggestion role="widget" value="[[item.fieldTyp]]" label="" readonly="true" directory-name="dynf_field_types" name="fieldTyp"></nuxeo-directory-suggestion>
-        </template>
-      </nuxeo-data-table-column>
-    </nuxeo-data-table>
+      <nuxeo-data-table
+        role="widget"
+        label="Field Definitions"
+        items="[[document.properties.csd:definition]]"
+        name="definition"
+      >
+        <nuxeo-data-table-column name="Field Name">
+          <template>[[item.fieldName]]</template>
+        </nuxeo-data-table-column>
+
+        <nuxeo-data-table-column name="Field Type">
+          <template>
+            <nuxeo-directory-suggestion role="widget" value="[[item.fieldTyp]]" label="" readonly="true" directory-name="dynf_field_types" name="fieldTyp"></nuxeo-directory-suggestion>
+          </template>
+        </nuxeo-data-table-column>
+      </nuxeo-data-table>
+
+      </nuxeo-card>
 
   </template>
 
