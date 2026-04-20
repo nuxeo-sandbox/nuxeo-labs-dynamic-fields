@@ -18,12 +18,14 @@
     -->
     <genericPageProvider name="dynf_search"
                          class="nuxeo.labs.dynamic.fields.DynamicFieldsSearchPageProvider">
-      <searchDocumentType>AdvancedSearch</searchDocumentType>
-      <pattern>
-        SELECT * FROM Document WHERE ecm:isVersion = 0
-          AND ecm:isTrashed = 0
+      <trackUsage>false</trackUsage>
+      <property name="coreSession">#{documentManager}</property>
+      <whereClause>
+        <fixedPart>
+          ecm:isVersion = 0 AND ecm:isTrashed = 0
           AND ecm:mixinType = 'DynamicFields'
-      </pattern>
+        </fixedPart>
+      </whereClause>
       <pageSize>20</pageSize>
     </genericPageProvider>
 

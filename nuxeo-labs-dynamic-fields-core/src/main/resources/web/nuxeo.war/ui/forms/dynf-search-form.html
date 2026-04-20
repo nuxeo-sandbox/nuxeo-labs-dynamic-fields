@@ -1,0 +1,276 @@
+<!--
+`dynf-search-form`
+Reusable widget for searching documents by dynamic field values.
+Drop this element into a Studio Designer search form layout.
+It renders inputs based on the selected CustomSchemaDef and sets the
+`dynf_search` named parameter consumed by DynamicFieldsSearchPageProvider.
+
+Usage in a Designer search form layout:
+  <dynf-search-form params="{{params}}"></dynf-search-form>
+
+The `params` property must be two-way bound to the search layout's params
+so that `dynf_search` is passed to the page provider alongside any other
+predicates/aggregates defined in Studio.
+
+@group Nuxeo UI
+@element dynf-search-form
+-->
+<dom-module id="dynf-search-form">
+  <template>
+    <style include="nuxeo-styles">
+      :host {
+        display: block;
+      }
+      .dynamic-field {
+        margin-bottom: 8px;
+      }
+      .field-row {
+        display: flex;
+        align-items: center;
+      }
+      .field-row nuxeo-input,
+      .field-row nuxeo-date-picker {
+        flex: 1;
+      }
+      .operator-select {
+        width: 100px;
+        margin-right: 8px;
+      }
+    </style>
+
+    <!-- Schema def selector -->
+    <nuxeo-document-suggestion
+      role="widget"
+      label="Dynamic Fields Definition"
+      name="schemaDef"
+      value="{{_schemaDefId}}"
+      min-chars="0"
+      operation="DynamicFields.GetDocumentTypes"
+      schemas="custom-schema-def"
+      result-formatter="[[_schemaDefFormatter]]"
+      selected-item="{{_selectedSchemaDef}}"
+    ></nuxeo-document-suggestion>
+
+    <!-- Dynamic field inputs -->
+    <template is="dom-if" if="[[_hasDefinition(_selectedSchemaDef)]]">
+      <template is="dom-repeat" items="[[_fieldDefinitions]]" as="fieldDef" index-as="fieldIndex">
+
+        <!-- String -->
+        <template is="dom-if" if="[[_isType(fieldDef, 'string')]]">
+          <div class="dynamic-field field-row">
+            <nuxeo-select
+              class="operator-select"
+              label="Op"
+              selected="{{fieldDef._operator}}"
+              attr-for-selected="name"
+              on-selected-changed="_buildSearchParam">
+              <paper-item name="eq">= (exact)</paper-item>
+              <paper-item name="like">~ (like)</paper-item>
+            </nuxeo-select>
+            <nuxeo-input
+              label="[[fieldDef.fieldName]]"
+              value="{{fieldDef._value}}"
+              on-value-changed="_buildSearchParam"
+            ></nuxeo-input>
+          </div>
+        </template>
+
+        <!-- Integer -->
+        <template is="dom-if" if="[[_isType(fieldDef, 'integer')]]">
+          <div class="dynamic-field field-row">
+            <nuxeo-select
+              class="operator-select"
+              label="Op"
+              selected="{{fieldDef._operator}}"
+              attr-for-selected="name"
+              on-selected-changed="_buildSearchParam">
+              <paper-item name="eq">=</paper-item>
+              <paper-item name="lt">&lt;</paper-item>
+              <paper-item name="lte">&le;</paper-item>
+              <paper-item name="gt">&gt;</paper-item>
+              <paper-item name="gte">&ge;</paper-item>
+            </nuxeo-select>
+            <nuxeo-input
+              label="[[fieldDef.fieldName]]"
+              type="number"
+              value="{{fieldDef._value}}"
+              on-value-changed="_buildSearchParam"
+            ></nuxeo-input>
+          </div>
+        </template>
+
+        <!-- Double -->
+        <template is="dom-if" if="[[_isType(fieldDef, 'double')]]">
+          <div class="dynamic-field field-row">
+            <nuxeo-select
+              class="operator-select"
+              label="Op"
+              selected="{{fieldDef._operator}}"
+              attr-for-selected="name"
+              on-selected-changed="_buildSearchParam">
+              <paper-item name="eq">=</paper-item>
+              <paper-item name="lt">&lt;</paper-item>
+              <paper-item name="lte">&le;</paper-item>
+              <paper-item name="gt">&gt;</paper-item>
+              <paper-item name="gte">&ge;</paper-item>
+            </nuxeo-select>
+            <nuxeo-input
+              label="[[fieldDef.fieldName]]"
+              type="number"
+              step="any"
+              value="{{fieldDef._value}}"
+              on-value-changed="_buildSearchParam"
+            ></nuxeo-input>
+          </div>
+        </template>
+
+        <!-- Boolean -->
+        <template is="dom-if" if="[[_isType(fieldDef, 'boolean')]]">
+          <div class="dynamic-field">
+            <paper-checkbox
+              checked="{{fieldDef._value}}"
+              on-checked-changed="_buildSearchParam"
+            >[[fieldDef.fieldName]]</paper-checkbox>
+          </div>
+        </template>
+
+        <!-- Date -->
+        <template is="dom-if" if="[[_isType(fieldDef, 'date')]]">
+          <div class="dynamic-field field-row">
+            <nuxeo-select
+              class="operator-select"
+              label="Op"
+              selected="{{fieldDef._operator}}"
+              attr-for-selected="name"
+              on-selected-changed="_buildSearchParam">
+              <paper-item name="eq">=</paper-item>
+              <paper-item name="lt">&lt;</paper-item>
+              <paper-item name="lte">&le;</paper-item>
+              <paper-item name="gt">&gt;</paper-item>
+              <paper-item name="gte">&ge;</paper-item>
+            </nuxeo-select>
+            <nuxeo-date-picker
+              label="[[fieldDef.fieldName]]"
+              value="{{fieldDef._value}}"
+              on-value-changed="_buildSearchParam"
+            ></nuxeo-date-picker>
+          </div>
+        </template>
+
+      </template>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'dynf-search-form',
+      behaviors: [Nuxeo.LayoutBehavior],
+      properties: {
+        /**
+         * The search params object, two-way bound to the search layout.
+         * This widget sets `params.dynf_search` with the JSON criteria.
+         */
+        params: {
+          type: Object,
+          notify: true,
+        },
+        _schemaDefId: {
+          type: String,
+        },
+        _selectedSchemaDef: {
+          type: Object,
+          observer: '_schemaDefChanged',
+        },
+        _fieldDefinitions: {
+          type: Array,
+          value: function() { return []; },
+        },
+        _schemaDefFormatter: {
+          type: Function,
+          value: function() {
+            return this._formatSchemaDef.bind(this);
+          },
+        },
+      },
+
+      _formatSchemaDef: function(doc) {
+        return doc.title + ' (' + doc.properties['csd:defForTyp'] + ')';
+      },
+
+      _hasDefinition: function(schemaDef) {
+        return schemaDef && schemaDef.properties &&
+               schemaDef.properties['csd:definition'] &&
+               schemaDef.properties['csd:definition'].length > 0;
+      },
+
+      _isType: function(fieldDef, type) {
+        return fieldDef && fieldDef.fieldTyp === type;
+      },
+
+      _schemaDefChanged: function(schemaDef) {
+        if (!schemaDef || !schemaDef.properties || !schemaDef.properties['csd:definition']) {
+          this._fieldDefinitions = [];
+          this._clearSearchParam();
+          return;
+        }
+        // Build internal field list with mutable _value and _operator
+        var defs = schemaDef.properties['csd:definition'];
+        var fields = [];
+        for (var i = 0; i < defs.length; i++) {
+          fields.push({
+            fieldName: defs[i].fieldName,
+            fieldTyp: defs[i].fieldTyp,
+            _value: defs[i].fieldTyp === 'boolean' ? false : '',
+            _operator: defs[i].fieldTyp === 'string' ? 'eq' : 'eq',
+          });
+        }
+        this._fieldDefinitions = fields;
+        this._clearSearchParam();
+      },
+
+      /**
+       * Builds the dynf_search JSON param from all fields that have a value.
+       * Called whenever any field value or operator changes.
+       */
+      _buildSearchParam: function() {
+        // Debounce to avoid building multiple times during init
+        this.debounce('buildSearchParam', function() {
+          var criteria = [];
+          var defs = this._fieldDefinitions || [];
+          for (var i = 0; i < defs.length; i++) {
+            var def = defs[i];
+            var val = def._value;
+            // Skip empty values
+            if (val === null || val === undefined || val === '') {
+              continue;
+            }
+            // For boolean, include it (false is a valid search value)
+            criteria.push({
+              fieldName: def.fieldName,
+              fieldTyp: def.fieldTyp,
+              value: String(val),
+              operator: def._operator || 'eq',
+            });
+          }
+
+          if (!this.params) {
+            this.params = {};
+          }
+
+          if (criteria.length > 0) {
+            this.set('params.dynf_search', JSON.stringify(criteria));
+          } else {
+            this._clearSearchParam();
+          }
+        }.bind(this), 100);
+      },
+
+      _clearSearchParam: function() {
+        if (this.params) {
+          this.set('params.dynf_search', '');
+        }
+      },
+    });
+  </script>
+</dom-module>
