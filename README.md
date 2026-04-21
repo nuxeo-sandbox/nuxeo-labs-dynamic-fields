@@ -131,6 +131,8 @@ Then re-index your content from the Nuxeo Admin > Elasticsearch page.
 
 > **Note**: On a fresh deployment (where `dynf:values` was never previously indexed), a standard re-index is sufficient. If you previously had `dynf:values` indexed as a non-nested type (e.g. during development), you must **drop and recreate the index** before re-indexing — OpenSearch does not allow changing a field from `object` to `nested` on an existing index. You can do this by stopping Nuxeo, deleting the index (`curl -X DELETE http://<opensearch-host>:9200/nuxeo`), then restarting Nuxeo and re-indexing.
 
+> **Index size note**: The mapping uses `include_in_parent: true` on the nested `dynf:values` field so that dynamic string values are included in the full-text index. This causes each dynamic field entry to be indexed twice (once as a nested document for correlated queries, once flattened into the parent for full-text search). For most deployments this overhead is modest, but it may be significant if documents carry many dynamic fields with large string values.
+
 ### Creating a Search in Studio
 
 1. In **Nuxeo Studio**, create a new Page Provider:
