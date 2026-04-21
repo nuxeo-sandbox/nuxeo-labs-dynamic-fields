@@ -174,6 +174,12 @@ The plugin also registers a default `dynf_search` page provider (in `dynamic-fie
 
 To tune the misc. layouts provided, just recreate the same at the same location in the `ui` folder.
 
+## Translation
+
+The plugin ships with English and French labels for the document types and the field type values.
+
+To change or adapt these labels — for example to add translations for other languages — add the translation keys to your Studio project, in Designer. You can find the [i18n folder](nuxeo-labs-dynamic-fields-core/src/main/resources/web/nuxeo.war/ui/i18n/).
+
 ## How to build
 ```bash
 git clone https://github.com/nuxeo-sandbox/nuxeo-labs-dynamic-fields
