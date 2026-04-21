@@ -117,9 +117,31 @@ LTS 2025 plugin examples (verify parent version starts with `2025.`):
 - Published: `~/GitHub/nuxeo-sandbox/nuxeo-labs-pdf-toolkit`, `~/GitHub/nuxeo-sandbox/nuxeo-labs-content-intelligence-connector`, `~/GitHub/nuxeo-sandbox/nuxeo-labs-multi-nuxeoapps`
 - Nuxeo LTS 2025 source: `~/GitHub/nuxeo/nuxeo-sources-lts-2025`
 
-## Java Style
+## Code Style
 
-- 4-space indent, K&R braces, ~120 char lines
+### Java
+
+- 4-space indent, **no tabs**, no trailing spaces, K&R braces, ~120 char lines
 - Use modern Java: `var`, records, pattern matching `instanceof`, switch expressions, text blocks, `String.formatted()`
+- **No wildcard imports**. Import order: static, `java.*`, `jakarta.*`, `org.*`, `com.*`
+- Always use braces for `if`/`else` blocks (even single-line)
+- No `final` on method parameters or local variables
+- No `private` methods/fields (use `protected`); exceptions: `log` and `serialVersionUID`
+- No `final` classes or methods (hinders extensibility)
+- Use `i++` (not `++i`) for simple increments
+- Use `Objects.requireNonNull` for null checks
+- Logging: parameterized messages `log.debug("Processing: {}", docId)`, use `if (log.isDebugEnabled())` for non-constant messages
+- Javadoc first sentence: 3rd person verb phrase ending with period (*Gets the foobar.* not *Get the foobar*)
+- `@since 2025.XX` on new public API. No `@author` tag
 - License header: Apache 2.0 with current year and `Contributors:` section
-- `@since 2025.XX` on new public API
+
+### XML (OSGI-INF, POMs, XSD, HTML)
+
+- **2-space indent**, no tabs, 120 char line width
+- Self-closing tags: add space before `/>` (e.g., `<property name="foo" />`)
+
+### JavaScript (Automation Scripting, Web UI)
+
+- **4-space indent**, no tabs
+- Nuxeo Automation Scripting uses **ECMAScript 5** (no `let`/`const`, no arrow functions, no template literals)
+- Automation operations are called as global functions: `Document.Create(input, type, name, properties)`, `Document.Query(null, {"query": queryString})`, etc. — always pass named parameters as an object
