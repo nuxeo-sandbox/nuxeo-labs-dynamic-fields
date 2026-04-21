@@ -4,7 +4,7 @@ A Nuxeo LTS 2025 plugin that implements an Entity-Attribute-Value (EAV) pattern,
 
 > [!IMPORTANT]
 > (See below for details)
-> * This requires to  use the Nested File Type of Elastic/Opensearch, which means **you must deploy the `dynamic-fields-opensearch` configuration template**.
+> * This requires to  use the [Nested File Type](https://docs.opensearch.org/latest/mappings/supported-field-types/nested/#:~:text=A%20nested%20field%20type%20is,and%20stored%20in%20flattened%20form) of Elastic/Opensearch, which means **you must deploy the `dynamic-fields-opensearch` configuration template**.
 > * We implement this **only for OpenSearch**, but you can easily also create the Elasticsearch part of you need
 
 
