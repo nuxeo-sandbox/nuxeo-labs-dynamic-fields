@@ -68,7 +68,7 @@
 
   <!-- Icons and all about each document type -->
   <extension target="org.nuxeo.ecm.platform.types.TypeService" point="types">
-     <type id="CustomSchemaDef">
+    <type id="CustomSchemaDef">
       <label>Custom Schema Definition</label>
       <icon>/img/CustomSchemaDef.png</icon>
       <bigIcon>/img/CustomSchemaDef.png</bigIcon>

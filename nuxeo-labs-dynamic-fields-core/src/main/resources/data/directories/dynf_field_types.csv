@@ -1,7 +1,7 @@
 id,label,obsolete
-"string","String","0"
-"integer","Integer","0"
-"double","Double","0"
-"boolean","Boolean","0"
-"date","Date","0"
-"blob","Blob","0"
+"string","label.dynf.type.string","0"
+"integer","label.dynf.type.integer","0"
+"double","label.dynf.type.double","0"
+"boolean","label.dynf.type.boolean","0"
+"date","label.dynf.type.date","0"
+"blob","label.dynf.type.blob","0"

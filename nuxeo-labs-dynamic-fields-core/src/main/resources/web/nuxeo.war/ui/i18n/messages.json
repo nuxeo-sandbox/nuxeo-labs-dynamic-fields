@@ -1,0 +1,10 @@
+{
+  "label.document.type.customschemadef": "Custom Schema Definition",
+  "label.document.type.customschemadefcontainer": "Custom Schema Definition Container",
+  "label.dynf.type.string": "String",
+  "label.dynf.type.integer": "Integer",
+  "label.dynf.type.double": "Double",
+  "label.dynf.type.boolean": "Boolean",
+  "label.dynf.type.date": "Date",
+  "label.dynf.type.blob": "Blob"
+}
