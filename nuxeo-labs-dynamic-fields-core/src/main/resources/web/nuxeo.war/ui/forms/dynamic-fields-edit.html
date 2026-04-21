@@ -19,7 +19,7 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
 
     <template is="dom-if" if="[[hasFacet(document, 'DynamicFields')]]">
       <nuxeo-card heading="Dynamic Fields">
-        <template is="dom-if" if="[[_canChooseSchemaDef]]">
+        <template is="dom-if" if="[[_canChooseSchemaDef(document)]]">
           <nuxeo-document-suggestion
             role="widget"
             label="Schema Definition"
@@ -33,7 +33,7 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
             required
           ></nuxeo-document-suggestion>
         </template>
-        <template is="dom-if" if="[[!_canChooseSchemaDef]]">
+        <template is="dom-if" if="[[!_canChooseSchemaDef(document)]]">
           <nuxeo-document-suggestion
             role="widget"
             label="Schema Definition"
@@ -67,6 +67,7 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
                 role="widget"
                 label="[[fieldDef.fieldName]]"
                 name="[[fieldDef.fieldName]]"
+                step="1"
                 type="number"
                 value="{{_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'integerValue')}}"
                 on-value-changed="_onFieldValueChanged"
@@ -83,7 +84,7 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
                 label="[[fieldDef.fieldName]]"
                 name="[[fieldDef.fieldName]]"
                 type="number"
-                step="any"
+                step="0.01"
                 value="{{_getFieldValue(fieldDef.fieldName, document.properties.dynf:values, 'doubleValue')}}"
                 on-value-changed="_onFieldValueChanged"
                 data-field-name$="[[fieldDef.fieldName]]"
@@ -151,7 +152,6 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
         document: {
           type: Object,
           notify: true,
-          observer: '_documentChanged',
         },
         _selectedSchemaDef: {
           type: Object,
@@ -162,13 +162,6 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
           value: function() {
             return this._formatSchemaDef.bind(this);
           }
-        },
-        _canChooseSchemaDef: Boolean
-      },
-
-      _documentChanged: function(newDoc) {
-        if(newDoc) {
-          this._layoutTypeHandler(newDoc, this.layoutType);
         }
       },
 
@@ -177,24 +170,21 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
       },
 
       _layoutTypeHandler: function(document, layoutType) {
-        if(!document || !document.properties || !document.properties['dynf:schemaDef']) {
-          this._canChooseSchemaDef = true;
-          return;
-        }
-
-        let docId = this._getSchemaDefDocId(document);
-        if(docId) {
-          let schemaDefLoader =  this.$.schemaDefLoader;
-          schemaDefLoader.docId = docId;
-          schemaDefLoader.get()
-                          .then(function(response) {
-                            this._canChooseSchemaDef = false;
-                            this._selectedSchemaDef = response;
-                          }.bind(this))
-                          .catch(function(error) {
-                            console.error("Error getting the schema def: " + error)
-                            alert("Error: " + error);
-                          }.bind(this));
+        if (!this._canChooseSchemaDef(document)) {
+          let docId = this._getSchemaDefDocId(document);
+          if(docId) {
+            let schemaDefLoader =  this.$.schemaDefLoader;
+            schemaDefLoader.docId = docId;
+            schemaDefLoader.get()
+                           .then(function(response) {
+                              debugger
+                              this._selectedSchemaDef = response;
+                            }.bind(this))
+                            .catch(function(error) {
+                              console.error("Error getting the schema def: " + error)
+                              alert("Error: " + error);
+                            }.bind(this));
+          }
         }
       },
 

@@ -2,7 +2,7 @@
 
 ## Project
 
-Nuxeo LTS 2025 plugin (Java 21, Maven). Currently a scaffold with a placeholder operation; real functionality to be added.
+Nuxeo LTS 2025 plugin (Java 21, Maven) implementing an Entity-Attribute-Value (EAV) pattern for multi-tenant dynamic fields on documents. Uses OpenSearch nested queries for correlated search.
 
 - **Parent**: `org.nuxeo:nuxeo-parent:2025.16`
 - **GroupId**: `nuxeo.labs.dynamic.fields`
@@ -12,14 +12,15 @@ Nuxeo LTS 2025 plugin (Java 21, Maven). Currently a scaffold with a placeholder 
 
 | Module | Purpose |
 |--------|---------|
-| `nuxeo-labs-dynamic-fields-core` | Java code, OSGI-INF component XMLs, tests |
-| `nuxeo-labs-dynamic-fields-package` | Nuxeo Marketplace package (assembly, install templates) |
+| `nuxeo-labs-dynamic-fields-core` | Java code, OSGI-INF component XMLs, Web UI elements, tests |
+| `nuxeo-labs-dynamic-fields-package` | Nuxeo Marketplace package (assembly, install templates incl. `dynamic-fields-opensearch`) |
 
 Key paths in the core module:
 - Java sources: `nuxeo-labs-dynamic-fields-core/src/main/java/nuxeo/labs/dynamic/fields/`
 - Component XMLs: `nuxeo-labs-dynamic-fields-core/src/main/resources/OSGI-INF/`
 - Bundle manifest: `nuxeo-labs-dynamic-fields-core/src/main/resources/META-INF/MANIFEST.MF`
 - Tests: `nuxeo-labs-dynamic-fields-core/src/test/java/nuxeo/labs/dynamic/fields/`
+- Web UI widgets: `nuxeo-labs-dynamic-fields-core/src/main/resources/web/nuxeo.war/ui/`
 
 ## Build & Test Commands
 
@@ -34,10 +35,17 @@ mvn clean install -DskipTests
 mvn test -pl nuxeo-labs-dynamic-fields-core
 
 # Run a single test class
-mvn test -pl nuxeo-labs-dynamic-fields-core -Dtest=TestDummyOpForTest
+mvn test -pl nuxeo-labs-dynamic-fields-core -Dtest=TestDynamicFieldsSearchPageProvider
 ```
 
 No CI workflows, no linter, no formatter configured in this repo. The `nuxeo-parent` POM may enforce Spotless but `nuxeo.skip.enforcer=true` is set.
+
+## Current Code
+
+- **`GetCustomerId`** — operation returning current user's customer ID (configurable via `dynamicfields.customerid.chain` config property; defaults to hard-coded `ABCD-1234`)
+- **`GetDocumentTypes`** — operation returning `CustomSchemaDef` documents for current customer
+- **`DynamicFieldsSearchPageProvider`** — custom PageProvider building OpenSearch nested queries from `dynf_search` named parameter
+- OSGI-INF contributions: schemas (`custom-schema-def`, `dynamic-fields`), document types (`CustomSchemaDef`, `CustomSchemaDefContainer`), facet (`DynamicFields`), directories (`dynf_field_types`), page providers
 
 ## Adding New Code
 
@@ -63,7 +71,7 @@ No CI workflows, no linter, no formatter configured in this repo. The `nuxeo-par
 
 ### Dependencies
 
-Module POMs declare dependencies **without `<version>` tags** — versions are managed by `nuxeo-parent`. The core module currently depends on `nuxeo-automation-core` (compile) and `nuxeo-automation-test` (test).
+Module POMs declare dependencies **without `<version>` tags** — versions are managed by `nuxeo-parent`. The core module depends on `nuxeo-automation-core` (compile), `nuxeo-core-search` + OpenSearch deps (provided), and `nuxeo-automation-test` + `nuxeo-core-test` (test).
 
 ## Critical Pitfalls
 
