@@ -145,3 +145,24 @@ LTS 2025 plugin examples (verify parent version starts with `2025.`):
 - **4-space indent**, no tabs
 - Nuxeo Automation Scripting uses **ECMAScript 5** (no `let`/`const`, no arrow functions, no template literals)
 - Automation operations are called as global functions: `Document.Create(input, type, name, properties)`, `Document.Query(null, {"query": queryString})`, etc. — always pass named parameters as an object
+
+### Markdown (README, docs)
+
+- Use GitHub alert syntax for notes, warnings, tips, etc.:
+  ```
+  > [!NOTE]
+  > Content here
+
+  > [!TIP]
+  > Content here
+
+  > [!IMPORTANT]
+  > Content here
+
+  > [!WARNING]
+  > Content here
+
+  > [!CAUTION]
+  > Content here
+  ```
+- See [GitHub alerts documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
