@@ -76,8 +76,8 @@
     </type>
     <type id="CustomSchemaDefContainer">
       <label>Custom Schema Definition Container</label>
-      <icon>/img/share-setting.png</icon>
-      <bigIcon>/img/share-setting.png</bigIcon>
+      <icon>/img/CustomSchemaDefContainer.png</icon>
+      <bigIcon>/img/CustomSchemaDefContainer.png</bigIcon>
       <description></description>
     </type>
   </extension>
