@@ -188,12 +188,14 @@
     },
     "dynf:values": {
       "type": "nested",
+      "include_in_parent": true,
       "properties": {
         "fieldName": {
           "type": "keyword"
         },
         "stringValue": {
           "type": "keyword",
+          "copy_to": "all_field",
           "ignore_above": 256,
           "fields": {
             "fulltext": {
