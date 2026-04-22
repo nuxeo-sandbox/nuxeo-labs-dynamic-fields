@@ -1,6 +1,6 @@
 # nuxeo-labs-dynamic-fields
 
-A Nuxeo LTS 2025 plugin that implements an Entity-Attribute-Value (EAV) pattern, allowing customers to define custom fields per document type without creating actual schema fields in the database. Designed for multi-tenant scenarios where each customer can have their own set of dynamic fields on any document type.
+A [**Nuxeo LTS 2025**](https://www.hyland.com/solutions/products/nuxeo-platform) plugin that implements an Entity-Attribute-Value (EAV) pattern, allowing customers to define custom fields per document type without creating actual schema fields in the database. Designed for multi-tenant scenarios where each customer can have their own set of dynamic fields on any document type.
 
 > [!IMPORTANT]
 > (See below for details)
@@ -22,7 +22,11 @@ A Nuxeo LTS 2025 plugin that implements an Entity-Attribute-Value (EAV) pattern,
 
 ### Operations
 
-- **`DynamicFields.GetCustomerId`**: Returns the customer ID for the current user. The default implementation returns a hard-coded value (`ABCD-1234`) for development and testing. **You must configure this** in production — see [Customer ID Resolution](#customer-id-resolution) below.
+- **`DynamicFields.GetCustomerId`**: Returns the customer ID for the current user. The default implementation returns a hard-coded value (`ABCD-1234`) for development and testing.
+
+> [!IMPORTANT]
+> **You must configure this** in production — see [Customer ID Resolution](#customer-id-resolution) below.
+
 - **`DynamicFields.GetDocumentTypes`**: Returns all `CustomSchemaDef` documents for the current customer (resolved via `GetCustomerId`). Used internally by the UI widgets — not intended for direct use.
 
 ## Customer ID Resolution
@@ -203,7 +207,13 @@ This is a moving project (no API maintenance, no deprecation process, etc.) If a
 useful for the Nuxeo Platform in general, they will be integrated directly into platform, not maintained here.
 
 ## Nuxeo Marketplace
-[here](https://connect.nuxeo.com/nuxeo/site/marketplace/package/nuxeo-labs-dynamic-fields)
+The plugin is available on the [Nuxeo Marketplace](https://connect.nuxeo.com/nuxeo/site/marketplace/package/nuxeo-labs-dynamic-fields)
+
+```
+nuxeoctl mp-install nuxeo-labs-dynamic-fields
+```
+
+
 
 ## License
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
