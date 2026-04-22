@@ -6,7 +6,7 @@ Nuxeo LTS 2025 plugin (Java 21, Maven) implementing an Entity-Attribute-Value (E
 
 - **Parent**: `org.nuxeo:nuxeo-parent:2025.16`
 - **GroupId**: `nuxeo.labs.dynamic.fields`
-- **Version**: `2025.2.0-SNAPSHOT`
+- **Version**: `2025.3.0-SNAPSHOT`
 
 ## Modules
 
