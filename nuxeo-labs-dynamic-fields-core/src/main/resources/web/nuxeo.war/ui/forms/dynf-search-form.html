@@ -93,6 +93,7 @@ predicates/aggregates defined in Studio.
             <nuxeo-input
               label="[[fieldDef.fieldName]]"
               type="number"
+              step="1"
               value="{{fieldDef._value}}"
               on-value-changed="_buildSearchParam"
             ></nuxeo-input>
@@ -116,8 +117,9 @@ predicates/aggregates defined in Studio.
             </nuxeo-select>
             <nuxeo-input
               label="[[fieldDef.fieldName]]"
+              name="[[fieldDef.fieldName]]"
               type="number"
-              step="any"
+              step="0.01"
               value="{{fieldDef._value}}"
               on-value-changed="_buildSearchParam"
             ></nuxeo-input>
