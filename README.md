@@ -7,8 +7,35 @@ A [**Nuxeo LTS 2025**](https://www.hyland.com/solutions/products/nuxeo-platform)
 > * This requires to  use the [Nested File Type](https://docs.opensearch.org/latest/mappings/supported-field-types/nested/#:~:text=A%20nested%20field%20type%20is,and%20stored%20in%20flattened%20form) of Elastic/Opensearch, which means **you must deploy the `dynamic-fields-opensearch` configuration template**.
 > * We implement this **only for OpenSearch**, but you can easily also create the Elasticsearch part of you need
 
+The plugin provides the default layouts and can be use as is, but you will more than likely have to use it as a good base to implement the customer behavior you need (see below, "You Likely Have Some Work to Do.
+
+Here are screenshots of the default laouts
+
+<img src="README-Images/01-SchemaDef.png" alt="Schema Definition" width="650">
+
+<br/>
+
+<img src="README-Images/02-DataEntry.png" alt="Data Entry" width="650">
+
+<br/>
+
+<img src="README-Images/03-Search.png" alt="Search layou" width="200">
+
 
 ## Concepts
+
+### You Likely Have Some Work to Do
+
+This plugins works as is, but it is very likely that it will mainly be the base for _your_ specific deployment, don't hesitate to copy or fork and modify it. You will likely at least override some parts in Studio.
+
+Typically (or "for example), you would want to:
+
+* Tune the font end and modify edit/view/search layouts of the dynamic fields:
+  * To display them as you want/need.
+  * To fit your UI/UX rules
+* Tune the default NXQL of a PageProvider using our `DynamicFieldsSearchPageProvider` (see below "Creating a Search in Studio") to add more filters relevant to your use case(s)
+* etc.
+
 
 ### Schemas
 
@@ -53,6 +80,9 @@ By default, if no configuration is provided, the operation returns a hard-coded 
     ```
 
 The configured chain is called every time the customer ID is needed (e.g. when listing schema definitions or rendering widgets).
+
+> [!IMPORTANT]
+> The misc `customerId` fields are required, make sure to prefill them, typically in the `Empty document created" event, calling your _GetCustomerId_ chain.
 
 ## ACLs and Permissions
 
