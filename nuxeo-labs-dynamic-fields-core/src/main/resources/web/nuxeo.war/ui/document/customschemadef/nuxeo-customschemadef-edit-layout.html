@@ -43,7 +43,14 @@
       </nuxeo-data-table-column>
 
       <nuxeo-data-table-column name="Field Type">
-        <template>[[item.fieldTyp]]</template>
+        <template>
+          <nuxeo-directory-suggestion
+              value="{{item.fieldTyp}}"
+              name="fieldTyp"
+              directory-name="dynf_field_types"
+              readonly
+            ></nuxeo-directory-suggestion>
+          </template>
       </nuxeo-data-table-column>
 
       <nuxeo-data-table-form>
