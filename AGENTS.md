@@ -109,13 +109,22 @@ public class TestMyOperation {
 - `@Deploy("bundle:OSGI-INF/test-contrib.xml")` — deploy test-only XML contributions
 - `TransactionalFeature.nextTransaction()` — flush async work between steps
 
-## Reference Examples
+## Local References (optional)
 
-LTS 2025 plugin examples (verify parent version starts with `2025.`):
+If the Nuxeo LTS 2025 source code or other plugin examples are available locally, working with local files is faster and avoids network calls. Ask the user for local paths before falling back to GitHub.
 
-- Simple: `~/Desktop/example-plugin`
-- Published: `~/GitHub/nuxeo-sandbox/nuxeo-labs-pdf-toolkit`, `~/GitHub/nuxeo-sandbox/nuxeo-labs-content-intelligence-connector`, `~/GitHub/nuxeo-sandbox/nuxeo-labs-multi-nuxeoapps`
-- Nuxeo LTS 2025 source: `~/GitHub/nuxeo/nuxeo-sources-lts-2025`
+Prompt the user with:
+
+> "Do you have the Nuxeo LTS 2025 source code cloned locally? If so, what is the path? (e.g., `~/GitHub/nuxeo/nuxeo-lts`). Otherwise, I'll use the GitHub repository."
+
+Similarly, for plugin examples:
+
+> "Do you have any Nuxeo plugin examples locally? (e.g., `nuxeo-labs-dynamic-fields`, `nuxeo-dynamic-asset-transformation`). If so, what are the paths? Otherwise, I'll browse them on GitHub."
+
+### Fallback URLs
+
+- Nuxeo LTS 2025: https://github.com/nuxeo/nuxeo-lts (branch `2025`)
+- Plugin examples: https://github.com/nuxeo-sandbox/nuxeo-labs-signature-webui, https://github.com/nuxeo-sandbox/nuxeo-labs-pdf-toolkit
 
 ## Code Style
 
