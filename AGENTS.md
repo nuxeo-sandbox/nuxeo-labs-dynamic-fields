@@ -71,7 +71,7 @@ No CI workflows, no linter, no formatter configured in this repo. The `nuxeo-par
 
 ### Dependencies
 
-Module POMs declare dependencies **without `<version>` tags** — versions are managed by `nuxeo-parent`. The core module depends on `nuxeo-automation-core` (compile), `nuxeo-core-search` + OpenSearch deps (provided), and `nuxeo-automation-test` + `nuxeo-core-test` (test).
+Module POMs declare dependencies **without `<version>` tags** — versions are managed by `nuxeo-parent`. The core module depends on `nuxeo-automation-core` (compile), `nuxeo-core-search` + `nuxeo-runtime-opensearch1` + `nuxeo-search-client-opensearch1` (provided), and `nuxeo-automation-test` + `nuxeo-core-test` + `nuxeo-core-search` test-jar (test).
 
 ## Critical Pitfalls
 
