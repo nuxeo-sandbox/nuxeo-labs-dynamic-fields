@@ -179,37 +179,22 @@ Similarly, for plugin examples:
 ## Release Process
 
 > [!WARNING]
-> This is a project-specific release workflow. The version numbers below are examples — derive actual values from the current POM version.
+> Check the repository is clean before starting. Alert and stop if there are uncommitted changes.
 
-### Steps
+> [!IMPORTANT]
+> The version numbers below are examples only. Always read the actual current version from the POM before running any command, and derive the release and next snapshot versions from it (e.g. `2025.1.0-SNAPSHOT` → release `2025.1.0` → next snapshot `2025.2.0-SNAPSHOT`).
 
-1. **Check the repository is clean**
-   - Run `git status` and verify there are no uncommitted changes, staged files, or pending pulls/pushes.
-   - If anything is outstanding, alert the user and **stop** — do not proceed with the release.
-
-2. **Set the release version**
-   - Remove `-SNAPSHOT` from the current version (e.g., `2025.1.0-SNAPSHOT` → `2025.1.0`).
-   - `mvn versions:set -DnewVersion=2025.1.0 -DgenerateBackupPoms=false`
-
-3. **Build the release**
-   - `mvn clean install -DskipTests`
-
-4. **Copy the marketplace package to `~/Downloads`**
-   - Copy `{plugin}-package/target/{plugin}-package-{version}.zip` to `~/Downloads/`.
-
-5. **Set the next development version**
-   - Increment the minor version, reset incremental to zero, add `-SNAPSHOT` (e.g., `2025.1.0` → `2025.2.0-SNAPSHOT`).
-   - `mvn versions:set -DnewVersion=2025.2.0-SNAPSHOT -DgenerateBackupPoms=false`
-
-6. **Verify the build**
-   - `mvn clean install -DskipTests`
-
-7. **Commit and push**
+1. Remove `-SNAPSHOT` from the current version: `mvn versions:set -DnewVersion=<current-version-without-SNAPSHOT> -DgenerateBackupPoms=false`
+2. Build: `mvn clean install -DskipTests`
+3. Copy `nuxeo-ai-ext-package/target/nuxeo-ai-ext-package-<version>.zip` to `~/Downloads/`
+4. Bump to next snapshot (increment minor, reset incremental to 0, add `-SNAPSHOT`): `mvn versions:set -DnewVersion=<next-version>-SNAPSHOT -DgenerateBackupPoms=false`
+5. Verify: `mvn clean install -DskipTests`
+6. Commit and push:
    ```bash
    git add .
-   git commit -m "Post 2025.1.0 release"
+   git commit -m "Post <version> release"
    git push
    ```
 
 > [!NOTE]
-> No git tag is created. No GitHub release is created. The release version is intentionally not committed — only the post-release snapshot version is committed and pushed. The marketplace package ZIP copied to `~/Downloads` is the deliverable.
+> No git tag or GitHub release is created. The ZIP copied to `~/Downloads` is the deliverable.
