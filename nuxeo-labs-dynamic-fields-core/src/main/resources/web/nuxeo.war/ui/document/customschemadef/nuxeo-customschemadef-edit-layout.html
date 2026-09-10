@@ -24,7 +24,7 @@
 
     <nuxeo-input
       role="widget"
-      label="Type Name"
+      label="[[i18n('dynamicFields.customSchemaDef.defForTyp')]]"
       name="defForTyp"
       value="{{document.properties.csd:defForTyp}}"
       required
@@ -32,17 +32,17 @@
 
     <nuxeo-data-table
       role="widget"
-      label="Field Definitions"
+      label="[[i18n('dynamicFields.customSchemaDef.definition')]]"
       items="{{document.properties.csd:definition}}"
       name="definition"
       editable
       orderable
     >
-      <nuxeo-data-table-column name="Field Name">
+      <nuxeo-data-table-column name="[[i18n('dynamicFields.customSchemaDef.fieldName')]]">
         <template>[[item.fieldName]]</template>
       </nuxeo-data-table-column>
 
-      <nuxeo-data-table-column name="Field Type">
+      <nuxeo-data-table-column name="[[i18n('dynamicFields.customSchemaDef.fieldTyp')]]">
         <template>
           <nuxeo-directory-suggestion
               value="{{item.fieldTyp}}"
@@ -55,10 +55,10 @@
 
       <nuxeo-data-table-form>
         <template>
-          <nuxeo-input value="{{item.fieldName}}" label="Field Name" type="text" name="fieldName" required></nuxeo-input>
+          <nuxeo-input value="{{item.fieldName}}" label="[[i18n('dynamicFields.customSchemaDef.fieldName')]]" type="text" name="fieldName" required></nuxeo-input>
           <nuxeo-directory-suggestion
             value="{{item.fieldTyp}}"
-            label="Field Type"
+            label="[[i18n('dynamicFields.customSchemaDef.fieldTyp')]]"
             name="fieldTyp"
             directory-name="dynf_field_types"
             min-chars="0"

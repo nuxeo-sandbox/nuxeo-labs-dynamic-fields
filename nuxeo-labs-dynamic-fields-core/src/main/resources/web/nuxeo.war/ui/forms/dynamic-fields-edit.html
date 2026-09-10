@@ -1,4 +1,22 @@
 <!--
+(C) Copyright 2025 Hyland (http://hyland.com/) and others.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Contributors:
+    Thibaud Arguillere
+-->
+<!--
 `dynamic-fields-edit`
 Layout block for editing dynamic field values on documents with the DynamicFields facet.
 @group Nuxeo UI
@@ -15,19 +33,18 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
       }
     </style>
 
-    <nuxeo-document id="schemaDefLoader"></nuxeo-document>
+    <nuxeo-document id="schemaDefLoader" schemas="*"></nuxeo-document>
 
     <template is="dom-if" if="[[hasFacet(document, 'DynamicFields')]]">
-      <nuxeo-card heading="Dynamic Fields">
+      <nuxeo-card heading="[[i18n('dynamicFields.card.heading')]]">
         <template is="dom-if" if="[[_canChooseSchemaDef(document)]]">
           <nuxeo-document-suggestion
             role="widget"
-            label="Schema Definition"
+            label="[[i18n('dynamicFields.schemaDef.label')]]"
             name="schemaDef"
             value="{{document.properties.dynf:schemaDef}}"
             min-chars="0"
             operation="DynamicFields.GetDocumentTypes"
-            schemas="custom-schema-def"
             result-formatter="[[schemaDefFormatter]]"
             selected-item="{{_selectedSchemaDef}}"
             required
@@ -36,7 +53,7 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
         <template is="dom-if" if="[[!_canChooseSchemaDef(document)]]">
           <nuxeo-document-suggestion
             role="widget"
-            label="Schema Definition"
+            label="[[i18n('dynamicFields.schemaDef.label')]]"
             name="schemaDef"
             value="{{document.properties.dynf:schemaDef}}"
             readonly
@@ -152,6 +169,7 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
         document: {
           type: Object,
           notify: true,
+          observer: '_documentChanged',
         },
         _selectedSchemaDef: {
           type: Object,
@@ -169,23 +187,37 @@ you might want to allow changing it and handle the consequences (e.g. resetting 
         return !document || !document.properties || !document.properties['dynf:schemaDef'];
       },
 
-      _layoutTypeHandler: function(document, layoutType) {
-        if (!this._canChooseSchemaDef(document)) {
-          let docId = this._getSchemaDefDocId(document);
-          if(docId) {
-            let schemaDefLoader =  this.$.schemaDefLoader;
-            schemaDefLoader.docId = docId;
-            schemaDefLoader.get()
-                           .then(function(response) {
-                              debugger
-                              this._selectedSchemaDef = response;
-                            }.bind(this))
-                            .catch(function(error) {
-                              console.error("Error getting the schema def: " + error)
-                              alert("Error: " + error);
-                            }.bind(this));
-          }
+      /*
+        When the document already references a CustomSchemaDef, the read-only suggestion widget
+        cannot populate _selectedSchemaDef, so we load the definition ourselves. Without this,
+        no dynamic field input would be rendered when editing an existing document.
+      */
+      _documentChanged: function(doc) {
+        if (this._canChooseSchemaDef(doc)) {
+          this._selectedSchemaDef = null;
+          return;
         }
+
+        var docId = this._getSchemaDefDocId(doc);
+        if (!docId) {
+          this._selectedSchemaDef = null;
+          return;
+        }
+        // Already loaded, nothing to do
+        if (this._selectedSchemaDef && this._selectedSchemaDef.uid === docId) {
+          return;
+        }
+
+        var loader = this.$.schemaDefLoader;
+        loader.docId = docId;
+        loader.get()
+              .then(function(response) {
+                this._selectedSchemaDef = response;
+              }.bind(this))
+              .catch(function(error) {
+                console.error('dynamic-fields-edit: cannot load the schema definition', error);
+                this.fire('notify', { message: this.i18n('dynamicFields.error.schemaDefLoad') });
+              }.bind(this));
       },
 
       _getSchemaDefDocId: function(doc) {

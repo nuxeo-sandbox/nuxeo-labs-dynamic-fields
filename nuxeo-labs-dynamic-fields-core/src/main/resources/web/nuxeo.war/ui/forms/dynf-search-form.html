@@ -1,4 +1,22 @@
 <!--
+(C) Copyright 2025 Hyland (http://hyland.com/) and others.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Contributors:
+    Thibaud Arguillere
+-->
+<!--
 `dynf-search-form`
 Reusable widget for searching documents by dynamic field values.
 Drop this element into a Studio Designer search form layout.
@@ -41,12 +59,11 @@ predicates/aggregates defined in Studio.
     <!-- Schema def selector -->
     <nuxeo-document-suggestion
       role="widget"
-      label="Dynamic Fields Definition"
+      label="[[i18n('dynamicFields.search.definition.label')]]"
       name="schemaDef"
       value="{{_schemaDefId}}"
       min-chars="0"
       operation="DynamicFields.GetDocumentTypes"
-      schemas="custom-schema-def"
       result-formatter="[[_schemaDefFormatter]]"
       selected-item="{{_selectedSchemaDef}}"
     ></nuxeo-document-suggestion>
@@ -60,12 +77,12 @@ predicates/aggregates defined in Studio.
           <div class="dynamic-field field-row">
             <nuxeo-select
               class="operator-select"
-              label="Op"
+              label="[[i18n('dynamicFields.search.operator.label')]]"
               selected="{{fieldDef._operator}}"
               attr-for-selected="name"
               on-selected-changed="_buildSearchParam">
-              <paper-item name="eq">= (exact)</paper-item>
-              <paper-item name="like">~ (like)</paper-item>
+              <paper-item name="eq">[[i18n('dynamicFields.search.operator.eq')]]</paper-item>
+              <paper-item name="like">[[i18n('dynamicFields.search.operator.like')]]</paper-item>
             </nuxeo-select>
             <nuxeo-input
               label="[[fieldDef.fieldName]]"
@@ -80,7 +97,7 @@ predicates/aggregates defined in Studio.
           <div class="dynamic-field field-row">
             <nuxeo-select
               class="operator-select"
-              label="Op"
+              label="[[i18n('dynamicFields.search.operator.label')]]"
               selected="{{fieldDef._operator}}"
               attr-for-selected="name"
               on-selected-changed="_buildSearchParam">
@@ -105,7 +122,7 @@ predicates/aggregates defined in Studio.
           <div class="dynamic-field field-row">
             <nuxeo-select
               class="operator-select"
-              label="Op"
+              label="[[i18n('dynamicFields.search.operator.label')]]"
               selected="{{fieldDef._operator}}"
               attr-for-selected="name"
               on-selected-changed="_buildSearchParam">
@@ -126,13 +143,18 @@ predicates/aggregates defined in Studio.
           </div>
         </template>
 
-        <!-- Boolean -->
+        <!-- Boolean: tri-state. "any" means the field is not used as a search criterion. -->
         <template is="dom-if" if="[[_isType(fieldDef, 'boolean')]]">
-          <div class="dynamic-field">
-            <paper-checkbox
-              checked="{{fieldDef._value}}"
-              on-checked-changed="_buildSearchParam"
-            >[[fieldDef.fieldName]]</paper-checkbox>
+          <div class="dynamic-field field-row">
+            <nuxeo-select
+              label="[[fieldDef.fieldName]]"
+              selected="{{fieldDef._value}}"
+              attr-for-selected="name"
+              on-selected-changed="_buildSearchParam">
+              <paper-item name="any">[[i18n('dynamicFields.search.boolean.any')]]</paper-item>
+              <paper-item name="true">[[i18n('dynamicFields.search.boolean.true')]]</paper-item>
+              <paper-item name="false">[[i18n('dynamicFields.search.boolean.false')]]</paper-item>
+            </nuxeo-select>
           </div>
         </template>
 
@@ -141,7 +163,7 @@ predicates/aggregates defined in Studio.
           <div class="dynamic-field field-row">
             <nuxeo-select
               class="operator-select"
-              label="Op"
+              label="[[i18n('dynamicFields.search.operator.label')]]"
               selected="{{fieldDef._operator}}"
               attr-for-selected="name"
               on-selected-changed="_buildSearchParam">
@@ -168,6 +190,10 @@ predicates/aggregates defined in Studio.
     Polymer({
       is: 'dynf-search-form',
       behaviors: [Nuxeo.LayoutBehavior],
+
+      /** Sentinel meaning "this boolean field is not part of the search". */
+      BOOLEAN_ANY: 'any',
+
       properties: {
         /**
          * The search params object, two-way bound to the search layout.
@@ -223,8 +249,8 @@ predicates/aggregates defined in Studio.
           fields.push({
             fieldName: defs[i].fieldName,
             fieldTyp: defs[i].fieldTyp,
-            _value: defs[i].fieldTyp === 'boolean' ? false : '',
-            _operator: defs[i].fieldTyp === 'string' ? 'eq' : 'eq',
+            _value: defs[i].fieldTyp === 'boolean' ? this.BOOLEAN_ANY : '',
+            _operator: 'eq',
           });
         }
         this._fieldDefinitions = fields;
@@ -243,11 +269,16 @@ predicates/aggregates defined in Studio.
           for (var i = 0; i < defs.length; i++) {
             var def = defs[i];
             var val = def._value;
-            // Skip empty values
+            /*
+              Skip fields with no value. Booleans carry an explicit "any" state so that an untouched
+              boolean never contributes a criterion — otherwise it would silently filter on false.
+            */
             if (val === null || val === undefined || val === '') {
               continue;
             }
-            // For boolean, include it (false is a valid search value)
+            if (def.fieldTyp === 'boolean' && val === this.BOOLEAN_ANY) {
+              continue;
+            }
             criteria.push({
               fieldName: def.fieldName,
               fieldTyp: def.fieldTyp,
