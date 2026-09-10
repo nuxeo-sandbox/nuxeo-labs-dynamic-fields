@@ -42,6 +42,18 @@ Typically (or "for example), you would want to:
 - **`custom-schema-def`** (prefix `csd`): Defines which dynamic fields exist for a given customer and document type. Each field has a `fieldName` and a `fieldTyp` (validated against the `dynf_field_types` vocabulary: string, integer, double, boolean, date, blob).
 - **`dynamic-fields`** (prefix `dynf`): Carries the actual dynamic field values on documents. Values are stored in `dynf:values`, a multivalued complex field where each entry has a `fieldName` and typed value columns (`stringValue`, `integerValue`, `doubleValue`, `booleanValue`, `dateValue`, `blobValue`). Only the column matching the field type is populated. The `dynf:schemaDef` field references the `CustomSchemaDef` document that defines the field structure.
 
+> [!NOTE]
+> `blobValue` is a real Nuxeo blob: the schema includes `core-types.xsd` and uses the reserved `content`
+> complex type. Nuxeo identifies blobs **by type name**, so a look-alike type would silently degrade to a
+> plain complex property with no binary storage and no download URL. Blobs are stored and served
+> normally, but they are **not searchable** — Nuxeo does not extract full text from a blob nested inside
+> a complex list.
+
+> [!NOTE]
+> `dynf:customerId` is declared but never populated nor queried by the plugin itself. It is provided for
+> your own tenant filtering — see the note in [Customer ID Resolution](#customer-id-resolution). Remove it
+> from the schema if you do not need it.
+
 ### Document Types and Facet
 
 - **`CustomSchemaDef`**: A document type that holds field definitions for a specific customer and document type. One per customer per document type combination. Stored inside a `CustomSchemaDefContainer` folder.
@@ -148,7 +160,7 @@ NXQL wildcard queries on complex multivalued fields are **not correlated**. A qu
 This plugin provides:
 
 1. An **OpenSearch index template** (`dynamic-fields-opensearch`) that maps `dynf:values` as a `nested` type, enabling correlated queries within the same array entry.
-2. A **custom PageProvider** (`DynamicFieldsSearchPageProvider`) that builds OpenSearch nested queries from search criteria, while letting standard NXQL predicates and aggregates work normally.
+2. A **custom PageProvider** (`DynamicFieldsSearchPageProvider`) that appends a `dynamicFieldsNested` NXQL hint carrying the criteria, then delegates entirely to the standard Nuxeo search. Because it only rewrites the query, security filtering, aggregates, highlights, sorting, search events and result limits all behave exactly as with any other page provider.
 3. A **search form widget** (`dynf-search-form`) that renders dynamic field inputs and builds the search criteria automatically.
 
 ### Setting Up OpenSearch
@@ -167,7 +179,38 @@ Then re-index your content from the Nuxeo Admin > Elasticsearch page.
 > On a fresh deployment (where `dynf:values` was never previously indexed), a standard re-index is sufficient. If you previously had `dynf:values` indexed as a non-nested type (e.g. during development), you must **drop and recreate the index** before re-indexing — OpenSearch does not allow changing a field from `object` to `nested` on an existing index. You can do this by stopping Nuxeo, deleting the index (`curl -X DELETE http://<opensearch-host>:9200/nuxeo`), then restarting Nuxeo and re-indexing.
 
 > [!NOTE]
-> The mapping uses `include_in_parent: true` on the nested `dynf:values` field so that dynamic string values are included in the full-text index. This causes each dynamic field entry to be indexed twice (once as a nested document for correlated queries, once flattened into the parent for full-text search). For most deployments this overhead is modest, but it may be significant if documents carry many dynamic fields with large string values.
+> Two distinct mechanisms are at play in the mapping, and they are often confused:
+> * `copy_to: "all_field"` on `dynf:values.stringValue` is what makes dynamic string values searchable by full text. It works from inside a `nested` field and does **not** require `include_in_parent`.
+> * `include_in_parent: true` flattens each entry into the parent document. It is only needed so that plain (uncorrelated) NXQL on `dynf:values/*/stringValue` keeps working. It doubles the indexing of those values, which may matter if documents carry many dynamic fields with large string values. If you never query `dynf:values` through plain NXQL, you can drop it.
+
+### Operator Semantics
+
+| Operator | Applies to | Behaviour |
+|----------|-----------|-----------|
+| `eq` | string, integer, double, boolean | Exact `term` match |
+| `eq` | date | Matches the **whole day**. Nuxeo stores dates as full timestamps and the date picker submits midnight UTC, so an exact match would only find values recorded exactly at midnight. |
+| `like` | string only | Full-text match on the analyzed sub-field, with **AND** between terms: `blue sky` requires both words. It is not a SQL `LIKE`, and not a substring match. |
+| `lt` `lte` `gt` `gte` | integer, double, date | Range query |
+
+`blob` fields cannot be searched: they have no scalar column in the OpenSearch mapping. Submitting a
+blob criterion returns an explicit error rather than silently ignoring it.
+
+> [!NOTE]
+> Dates are compared in UTC. `nuxeo-date-picker` submits midnight UTC of the date the user picked in
+> their local timezone, so users far from UTC may see off-by-one-day results. If that matters for your
+> deployment, normalise the value before it reaches the page provider.
+
+### Using the Nested Query Outside a Page Provider
+
+The correlated nested query is registered as an NXQL hint operator, so it can be used from any page
+provider, from raw NXQL, or from Automation — the custom page provider class is only a convenience
+that injects it for you:
+
+```
+SELECT * FROM Document
+ WHERE ecm:mixinType = 'DynamicFields'
+   AND /*+ES: OPERATOR(dynamicFieldsNested) */ dynf:values = '[{"fieldName":"color","fieldTyp":"string","value":"blue"}]'
+```
 
 ### Creating a Search in Studio
 
@@ -203,7 +246,8 @@ Then re-index your content from the Nuxeo Admin > Elasticsearch page.
 The `dynf-search-form` widget:
 - Lets the user select a `CustomSchemaDef` to determine which dynamic fields are searchable
 - Renders an input for each field with the appropriate widget (text, number, checkbox, date picker)
-- Shows an operator selector (=, <, <=, >, >=, and "like" for strings)
+- Shows an operator selector (=, <, <=, >, >=, and "contains" for strings)
+- Booleans have three states: *Any* (the field is not used as a criterion), *Yes* and *No*
 - Automatically builds and sets the `dynf_search` named parameter on `params`, which flows to the PageProvider alongside all standard Studio predicates
 
 The plugin also registers a default `dynf_search` page provider (in `dynamic-fields-pageproviders.xml`) that can be used directly via REST API without Studio configuration.

@@ -2,9 +2,16 @@
 <package type="addon" name="nuxeo-labs-dynamic-fields" version="@VERSION@">
   <title>Nuxeo labs dynamic fields</title>
   <description>
-    <p>Put here an HTML description of your Nuxeo Package.</p>
+    <p>Implements an Entity-Attribute-Value (EAV) pattern, letting customers define custom fields per
+    document type at runtime, without adding schema fields to the database. Designed for multi-tenant
+    deployments where each customer has its own set of dynamic fields.</p>
+    <p>Correlated search on those fields is performed with OpenSearch <code>nested</code> queries, which
+    plain NXQL cannot express. This requires the bundled <code>dynamic-fields-opensearch</code>
+    configuration template to be activated in <code>nuxeo.conf</code>:</p>
+    <p><code>nuxeo.append.templates.dynf=dynamic-fields-opensearch</code></p>
+    <p>See the README for the full setup, including the mandatory customer ID resolution.</p>
   </description>
-  <!-- <home-page>http://doc.nuxeo.com/</home-page> -->
+  <home-page>https://github.com/nuxeo-sandbox/nuxeo-labs-dynamic-fields</home-page>
   <vendor>Hyland</vendor>
   <installer restart="true" />
   <uninstaller restart="true" />
@@ -35,8 +42,8 @@
   <!-- <provides> -->
   <!-- <package>an-embedded-package:1.0.0:1.0.0</package> -->
   <!-- </provides> -->
-  <license></license>
-  <license-url></license-url>
+  <license>Apache Software License 2.0</license>
+  <license-url>http://www.apache.org/licenses/LICENSE-2.0.html</license-url>
   <!-- Visibility: PRIVATE | MARKETPLACE | DEV | PUBLIC -->
   <visibility>DEV</visibility>
 </package>
