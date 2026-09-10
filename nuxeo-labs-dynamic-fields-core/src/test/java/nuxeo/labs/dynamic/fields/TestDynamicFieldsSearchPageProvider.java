@@ -19,12 +19,14 @@
 package nuxeo.labs.dynamic.fields;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.inject.Inject;
 
@@ -32,6 +34,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.impl.SimpleDocumentModel;
 import org.nuxeo.ecm.core.test.CoreSearchFeature;
 import org.nuxeo.ecm.platform.query.api.PageProvider;
 import org.nuxeo.ecm.platform.query.api.PageProviderService;
@@ -44,10 +47,9 @@ import org.nuxeo.runtime.test.runner.TransactionalFeature;
 /**
  * Tests for the {@link DynamicFieldsSearchPageProvider}.
  * <p>
- * These tests verify page provider registration, JSON parsing, and fallback
- * behavior. The actual nested OpenSearch query path requires a running
- * OpenSearch instance with the dynamic-fields-opensearch template active
- * and must be tested with {@code -Dnuxeo.test.search=opensearch1}.
+ * The provider only rewrites the NXQL: the actual nested query is produced by
+ * {@link DynamicFieldsNestedHintQueryBuilder} (covered by its own test) and executed by the platform. These tests
+ * therefore assert on the generated NXQL, which needs no running OpenSearch.
  *
  * @since 2025.1
  */
@@ -58,6 +60,11 @@ import org.nuxeo.runtime.test.runner.TransactionalFeature;
 @Deploy("nuxeo.labs.dynamic.fields.nuxeo-labs-dynamic-fields-core")
 public class TestDynamicFieldsSearchPageProvider {
 
+    protected static final String PP_NAME = "dynf_search";
+
+    protected static final String CRITERIA = """
+            [{"fieldName":"color","fieldTyp":"string","value":"blue"}]""";
+
     @Inject
     protected CoreSession session;
 
@@ -67,76 +74,123 @@ public class TestDynamicFieldsSearchPageProvider {
     @Inject
     protected TransactionalFeature txFeature;
 
-    @Test
-    public void testPageProviderIsRegistered() {
-        var ppdef = pageProviderService.getPageProviderDefinition("dynf_search");
+    protected DynamicFieldsSearchPageProvider newProvider(String dynfSearch) {
+        var ppdef = pageProviderService.getPageProviderDefinition(PP_NAME);
         assertNotNull("dynf_search page provider should be registered", ppdef);
-    }
 
-    @Test
-    public void testFallbackWithoutDynfSearch() {
-        // Create a document with the DynamicFields facet
-        DocumentModel doc = session.createDocumentModel("/", "testDoc", "File");
-        doc.addFacet("DynamicFields");
-        doc.setPropertyValue("dc:title", "Test Dynamic Fields");
-        doc.setPropertyValue("dynf:customerId", "ABCD-1234");
-        doc = session.createDocument(doc);
-
-        txFeature.nextTransaction();
-
-        // Query without dynf_search parameter — should fall back to standard NXQL
-        var ppdef = pageProviderService.getPageProviderDefinition("dynf_search");
-        assertNotNull("dynf_search definition should exist", ppdef);
+        DocumentModel searchDocument = SimpleDocumentModel.empty();
+        if (dynfSearch != null) {
+            searchDocument.putContextData(PageProviderService.NAMED_PARAMETERS,
+                    (Serializable) Map.of(DynamicFieldsSearchPageProvider.DYNF_SEARCH_PARAM, dynfSearch));
+        }
 
         HashMap<String, Serializable> props = new HashMap<>();
         props.put(SearchServicePageProvider.CORE_SESSION_PROPERTY, (Serializable) session);
         @SuppressWarnings("unchecked")
-        PageProvider<DocumentModel> pp = (PageProvider<DocumentModel>) pageProviderService.getPageProvider(
-                "dynf_search", ppdef, null, null, 20L, 0L, props);
-        assertNotNull("Page provider should not be null", pp);
-
-        List<DocumentModel> results = pp.getCurrentPage();
-        assertNotNull(results);
-        // With the repository search backend, facet queries may not return results.
-        // The important thing is that the fallback path executes without error.
+        var pp = (PageProvider<DocumentModel>) pageProviderService.getPageProvider(PP_NAME, ppdef, searchDocument, null,
+                20L, 0L, props);
+        return (DynamicFieldsSearchPageProvider) pp;
     }
 
     @Test
-    public void testParseSearchCriteria() {
-        var provider = new DynamicFieldsSearchPageProvider();
+    public void testPageProviderIsRegistered() {
+        assertNotNull(pageProviderService.getPageProviderDefinition(PP_NAME));
+    }
 
-        // Test valid JSON
-        var criteria = provider.parseSearchCriteria(
-                """
-                [{"fieldName":"color","fieldTyp":"string","value":"blue","operator":"eq"},\
-                {"fieldName":"weight","fieldTyp":"double","value":"10.5","operator":"gte"}]""");
-        assertEquals(2, criteria.size());
+    @Test
+    public void testHintIsInjectedWhenCriteriaAreProvided() {
+        var provider = newProvider(CRITERIA);
+        provider.buildQuery(session);
 
-        var first = criteria.get(0);
-        assertEquals("color", first.fieldName);
-        assertEquals("string", first.fieldTyp);
-        assertEquals("blue", first.value);
-        assertEquals("eq", first.operator);
+        String query = provider.getCurrentQuery();
+        assertTrue(query, query.contains("OPERATOR(dynamicFieldsNested)"));
+        assertTrue(query, query.contains("dynf:values ="));
+        // the fixed part must still be there
+        assertTrue(query, query.contains("ecm:mixinType = 'DynamicFields'"));
+    }
 
-        var second = criteria.get(1);
-        assertEquals("weight", second.fieldName);
-        assertEquals("double", second.fieldTyp);
-        assertEquals("10.5", second.value);
-        assertEquals("gte", second.operator);
+    @Test
+    public void testNoHintWithoutCriteria() {
+        var provider = newProvider(null);
+        provider.buildQuery(session);
 
-        // Test empty array
-        criteria = provider.parseSearchCriteria("[]");
-        assertEquals(0, criteria.size());
+        assertFalse(provider.getCurrentQuery(), provider.getCurrentQuery().contains("dynamicFieldsNested"));
+    }
 
-        // Test invalid JSON
-        criteria = provider.parseSearchCriteria("not json");
-        assertEquals(0, criteria.size());
+    @Test
+    public void testNoHintForBlankOrEmptyCriteria() {
+        for (String blank : List.of("", "   ", "[]")) {
+            var provider = newProvider(blank);
+            provider.buildQuery(session);
+            assertFalse(provider.getCurrentQuery(), provider.getCurrentQuery().contains("dynamicFieldsNested"));
+        }
+    }
 
-        // Test single criterion without operator (should default to eq)
-        criteria = provider.parseSearchCriteria(
-                """
-                [{"fieldName":"status","fieldTyp":"string","value":"active"}]""");
-        assertEquals(1, criteria.size());
-        assertEquals("eq", criteria.get(0).operator);
+    @Test
+    public void testCriteriaAreEscapedIntoTheNxql() {
+        var provider = newProvider("""
+                [{"fieldName":"city","fieldTyp":"string","value":"O'Hara"}]""");
+        provider.buildQuery(session);
+
+        // the single quote must be backslash-escaped so the NXQL literal stays well formed
+        assertTrue(provider.getCurrentQuery(), provider.getCurrentQuery().contains("O\\'Hara"));
+    }
+
+    @Test
+    public void testFallbackQueryStillRuns() {
+        DocumentModel doc = session.createDocumentModel("/", "testDoc", "File");
+        doc.addFacet("DynamicFields");
+        doc.setPropertyValue("dc:title", "Test Dynamic Fields");
+        doc = session.createDocument(doc);
+        txFeature.nextTransaction();
+
+        var provider = newProvider(null);
+        assertNotNull(provider.getCurrentPage());
+    }
+
+    /* ==================== NXQL rewriting ==================== */
+
+    @Test
+    public void testClauseIsInsertedBeforeOrderBy() {
+        String result = DynamicFieldsSearchPageProvider.appendBeforeOrderBy(
+                "SELECT * FROM Document WHERE a = 1 ORDER BY dc:title ASC", "HINT");
+
+        assertEquals("SELECT * FROM Document WHERE a = 1 AND HINT ORDER BY dc:title ASC", result);
+    }
+
+    @Test
+    public void testClauseIsAppendedWhenThereIsNoOrderBy() {
+        String result = DynamicFieldsSearchPageProvider.appendBeforeOrderBy("SELECT * FROM Document WHERE a = 1",
+                "HINT");
+
+        assertEquals("SELECT * FROM Document WHERE a = 1 AND HINT", result);
+    }
+
+    /*
+      A predicate value containing "ORDER BY" must not be mistaken for the sort clause.
+    */
+    @Test
+    public void testOrderByInsideAStringLiteralIsIgnored() {
+        String result = DynamicFieldsSearchPageProvider.appendBeforeOrderBy(
+                "SELECT * FROM Document WHERE dc:title = 'an ORDER BY trap'", "HINT");
+
+        assertEquals("SELECT * FROM Document WHERE dc:title = 'an ORDER BY trap' AND HINT", result);
+    }
+
+    @Test
+    public void testOrderByAfterAStringLiteralIsStillFound() {
+        String result = DynamicFieldsSearchPageProvider.appendBeforeOrderBy(
+                "SELECT * FROM Document WHERE dc:title = 'an ORDER BY trap' ORDER BY dc:created", "HINT");
+
+        assertEquals("SELECT * FROM Document WHERE dc:title = 'an ORDER BY trap' AND HINT ORDER BY dc:created", result);
+    }
+
+    @Test
+    public void testEscapedQuoteInsideALiteralIsHandled() {
+        String result = DynamicFieldsSearchPageProvider.appendBeforeOrderBy(
+                "SELECT * FROM Document WHERE dc:title = 'O\\'Hara ORDER BY x' ORDER BY dc:created", "HINT");
+
+        assertEquals("SELECT * FROM Document WHERE dc:title = 'O\\'Hara ORDER BY x' AND HINT ORDER BY dc:created",
+                result);
     }
 }

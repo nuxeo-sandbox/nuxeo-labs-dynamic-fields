@@ -9,5 +9,5 @@ Bundle-SymbolicName: nuxeo.labs.dynamic.fields.nuxeo-labs-dynamic-fields-core;si
 Nuxeo-Component: OSGI-INF/dynamic-fields-core-types-contrib.xml,
  OSGI-INF/dynamic-fields-directories-contrib.xml,
  OSGI-INF/dynamic-fields-operations.xml,
+ OSGI-INF/dynamic-fields-hints.xml,
  OSGI-INF/dynamic-fields-pageproviders.xml
-

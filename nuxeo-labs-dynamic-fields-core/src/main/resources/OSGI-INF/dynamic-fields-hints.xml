@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<component name="nuxeo.labs.dynamic.fields.hints">
+
+  <!--
+    Registers the NXQL hint operator used by DynamicFieldsSearchPageProvider to inject correlated
+    nested queries on dynf:values. Available to any page provider or raw NXQL, for example:
+
+      SELECT * FROM Document
+       WHERE /*+ES: OPERATOR(dynamicFieldsNested) */ dynf:values = '[{"fieldName":"color", ...}]'
+  -->
+  <extension target="org.nuxeo.ecm.core.search.client.opensearch1" point="hint">
+    <hint name="dynamicFieldsNested"
+          class="nuxeo.labs.dynamic.fields.DynamicFieldsNestedHintQueryBuilder" />
+  </extension>
+
+</component>
