@@ -98,8 +98,7 @@ public class GetCustomerId {
             return DEFAULT_CUSTOMER_ID;
         }
 
-        try {
-            var ctx = new OperationContext(session);
+        try (var ctx = new OperationContext(session)) {
             Object result = automationService.run(ctx, chainId);
             if (result instanceof String customerId) {
                 return customerId;
